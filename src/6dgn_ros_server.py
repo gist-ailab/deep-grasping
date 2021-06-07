@@ -42,19 +42,24 @@ class GraspNet():
         # convert ros imgmsg to opencv img
         rgb = self.cv_bridge.imgmsg_to_cv2(rgb, desired_encoding='bgr8')
         depth = self.cv_bridge.imgmsg_to_cv2(depth, desired_encoding='32FC1')
+        
+
         o3dpc = orh.rospc_to_o3dpc(pcl_msg, remove_nans=True) 
-        o3dpc = o3dpc.voxel_down_sample(0.006)
+        o3dpc = o3dpc.voxel_down_sample(0.001)
         o3dpc_ds = orh.apply_pass_through_filter(o3dpc, [-0.3, 0.3], [-0.3, 0.3], [0, 1.0])
         plane_model, inliers = o3dpc_ds.segment_plane(distance_threshold=0.01,
                                          ransac_n=10,
-                                         num_iterations=1000)
+                                         num_iterations=100)
         inlier_cloud = o3dpc_ds.select_down_sample(inliers)
         inlier_cloud.paint_uniform_color([1.0, 0, 0])
         outlier_cloud = o3dpc_ds.select_down_sample(inliers, invert=True)
         outlier_cloud.paint_uniform_color([0, 1, 0])
+        idx = np.random.choice(np.asarray(outlier_cloud.points).shape[0], 10000, replace=False)
+        outlier_cloud = outlier_cloud.select_down_sample(idx, invert=True)
+        open3d.visualization.draw_geometries([outlier_cloud])
         rospy.loginfo_once("Visualizing tabletop segmentation")
-        open3d.visualization.draw_geometries([o3dpc, inlier_cloud, outlier_cloud])
         cloud_npy = np.asarray(outlier_cloud.points)
+        # cloud_npy = cloud_npy[idx, :]
 
         self.data["image"] = rgb
         self.data["depth"] = depth 
@@ -64,6 +69,7 @@ class GraspNet():
         rospy.loginfo_once("Sending rgb, depth, pcl to 6 dof graspnet client")
         su.sendall_pickle(self.sock, self.data)
         grasp = su.recvall_pickle(self.sock)
+        print(grasp)
 
     
 if __name__ == '__main__':

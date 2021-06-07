@@ -2,7 +2,8 @@
 # Deep Grasping ROS
 
 - ROS wrapper for DNN based robotic grasping algorithms
-- Currently, only support 6-DoF GraspNet 
+- Support 6-DoF-GraspNet [[paper]](https://arxiv.org/abs/1905.10520) [[code]](https://github.com/NVlabs/6dof-graspnet)
+- Support Contact-GraspNet [[paper]](https://arxiv.org/abs/2103.14127) [[code]](https://github.com/NVlabs/contact_graspnet)
 
 ## TO DO
 - support GGCNN
@@ -11,7 +12,10 @@
 - add install documentation
 
 
-## 6-DOF-GRASPNET [[paper]](https://arxiv.org/abs/1905.10520) [[code]](https://github.com/NVlabs/6dof-graspnet)
+## 6-DoF-GraspNet
+
+<img src="./imgs/6dof_grasp.png" height="250">
+
 
 ### Setup
 
@@ -26,24 +30,53 @@ conda activate 6dofgraspnet && pip install -r requirements.txt
 
 Azure kinect node
 ```
-ROS_NAMESPACE=azure1 roslaunch azure_kinect_ros_driver driver.launch color_resolution:=1536P depth_mode:=WFOV_UNBINNED fps:=5 tf_prefix:=azure1_
+ros27 && ROS_NAMESPACE=azure1 roslaunch azure_kinect_ros_driver driver.launch color_resolution:=1536P depth_mode:=WFOV_UNBINNED fps:=5 tf_prefix:=azure1_
 ```
 
-Ros server for 6-dof-graspnet
+6-dof-graspnet server
 ```
-conda activate 6dofgraspnet && cd ~/catkin_ws/src/deep-grasping-ros/src \
+ros && conda activate 6dofgraspnet && cd ~/catkin_ws/src/deep-grasping-ros/src \
     && python 6dgn_ros_server.py
 ```
 
-Client for 6-dof-graspnet
+6-dof-graspnet client
 ```
-conda activate 6dofgraspnet && \
+ros && conda activate 6dofgraspnet && \
     cd ~/catkin_ws/src/deep-grasping-ros/src/6dof-graspnet \
-    && python -m demo.6dgn_client --gradient_based_refinement
+    && python -m demo.6dgn_client --vae_checkpoint_folder checkpoints/npoints_1024_train_evaluator_0_allowed_categories__ngpus_1_/
 ```
 
-<img src="./imgs/drill.png" height="250">
-<img src="./imgs/multiple.png" height="250">
+
+
+
+## Contact-GraspNet
+
+<img src="./imgs/contact_grasp.png" height="250">
+
+### RUN
+
+Azure kinect node
+```
+ros27 && ROS_NAMESPACE=azure1 roslaunch azure_kinect_ros_driver driver.launch color_resolution:=1536P depth_mode:=WFOV_UNBINNED fps:=5 tf_prefix:=azure1_
+```
+
+contact graspnet server
+```
+ros && conda activate contact_graspnet_env \
+    && cd ~/catkin_ws/src/deep-grasping-ros/src \
+    && python contact_grasp_server.py
+```
+
+contact graspnet client
+
+```
+ros && conda activate contact_graspnet_env \
+    && cd ~/catkin_ws/src/deep-grasping-ros/src/contact_graspnet \
+    && CUDA_VISIBLE_DEVICES=1 python contact_graspnet/contact_grasp_client.py
+```
+
+
+
 
 
 
