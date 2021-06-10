@@ -35,14 +35,14 @@ ros27 && ROS_NAMESPACE=azure1 roslaunch azure_kinect_ros_driver driver.launch co
 
 6-dof-graspnet server
 ```
-ros && conda activate 6dofgraspnet && cd ~/catkin_ws/src/deep-grasping-ros/src \
+ros && conda activate 6dofgraspnet && cd ~/catkin_ws/src/deep_grasping_ros/src \
     && python 6dgn_ros_server.py
 ```
 
 6-dof-graspnet client
 ```
 ros && conda activate 6dofgraspnet && \
-    cd ~/catkin_ws/src/deep-grasping-ros/src/6dof-graspnet \
+    cd ~/catkin_ws/src/deep_grasping_ros/src/6dof-graspnet \
     && python -m demo.6dgn_client --vae_checkpoint_folder checkpoints/npoints_1024_train_evaluator_0_allowed_categories__ngpus_1_/
 ```
 
@@ -62,16 +62,14 @@ ros27 && ROS_NAMESPACE=azure1 roslaunch azure_kinect_ros_driver driver.launch co
 
 contact graspnet server
 ```
-ros && conda activate contact_graspnet_env \
-    && cd ~/catkin_ws/src/deep-grasping-ros/src \
-    && python contact_grasp_server.py
+ros27 && rosrun deep_grasping_ros contact_grasp_server.py
 ```
 
 contact graspnet client
 
 ```
 ros && conda activate contact_graspnet_env \
-    && cd ~/catkin_ws/src/deep-grasping-ros/src/contact_graspnet \
+    && cd ~/catkin_ws/src/deep_grasping_ros/src/contact_graspnet \
     && CUDA_VISIBLE_DEVICES=1 python contact_graspnet/contact_grasp_client.py
 ```
 
