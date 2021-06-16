@@ -1,0 +1,3 @@
+string id
+float64 score
+geometry_msgs/TransformStamped transform

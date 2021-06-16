@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+from math import degrees
 import rospy
 import ros_numpy
 import cv2, cv_bridge
@@ -11,18 +12,12 @@ from sensor_msgs.msg import Image, CameraInfo, PointCloud2
 from easy_tcp_python2_3 import socket_utils as su
 from open3d_ros_helper import open3d_ros_helper as orh
 from visualization_msgs.msg import MarkerArray, Marker
-from deep_grasping_ros.srv import GetTarget6dofGrasp
-
-panda_gripper_coords = {
-    "left_center_indent": [0.041489, 0, 0.1034],
-    "left_center_flat": [0.0399, 0, 0.1034],
-    "right_center_indent": [-0.041489, 0, 0.1034],
-    "right_center_flat": [-0.0399, 0, 0.1034],
-    "left_tip_indent": [0.041489, 0, 0.112204],
-    "left_tip_flat": [0.0399, 0, 0.112204],
-    "right_tip_indent": [-0.041489, 0, 0.112204],
-    "right_tip_flat": [-0.0399, 0, 0.112204],
-}
+from geometry_msgs.msg import Point
+from deep_grasping_ros.msg import Grasp
+from deep_grasping_ros.srv import GetTargetContactGrasp
+from scipy.spatial.transform import Rotation as R
+import matplotlib.pyplot as plt
+from matplotlib import cm
 
 
 class ContactGraspNet():
@@ -34,111 +29,101 @@ class ContactGraspNet():
 
         # initialize dnn server 
         self.sock, add = su.initialize_server('localhost', 7777)
-        
+        rospy.loginfo("Wating for camera info")
         self.camera_info = rospy.wait_for_message("/azure1/rgb/camera_info", CameraInfo)
         self.data = {}
         self.data["intrinsics_matrix"] = np.array(self.camera_info.K).reshape(3, 3)
         
         self.bridge = cv_bridge.CvBridge()
-        # rgb_sub = message_filters.Subscriber("/azure1/rgb/image_raw", Image, buff_size=2048*1536*3)
-        # depth_sub = message_filters.Subscriber("/azure1/depth_to_rgb/image_raw", Image, buff_size=2048*1536*3)
-        # self.ts = message_filters.ApproximateTimeSynchronizer([rgb_sub, depth_sub], queue_size=1, slop=1)
-        # self.ts.registerCallback(self.inference)
-
-        self.grasp_srv = rospy.Service('/get_target_grasp_pose', GetTarget6dofGrasp, self.get_target_grasp_pose)
+        self.grasp_srv = rospy.Service('/get_target_grasp_pose', GetTargetContactGrasp, self.get_target_grasp_pose)
 
 
         # tf publisher
         self.br = tf2_ros.TransformBroadcaster()
         self.tf_buffer = tf2_ros.Buffer(rospy.Duration(1.0))
         self.listener = tf2_ros.TransformListener(self.tf_buffer)
+
+        # marker
         self.marker_pub = rospy.Publisher("target_grasp", MarkerArray, queue_size = 1)
+        self.marker_id = 0
+        self.cmap = plt.get_cmap("YlGn")
+        control_points = np.load("/home/demo/catkin_ws/src/deep_grasping_ros/src/contact_graspnet/gripper_control_points/panda.npy")[:, :3]
+        control_points = [[0, 0, 0], control_points[0, :], control_points[1, :], control_points[-2, :], control_points[-1, :]]
+        control_points = np.asarray(control_points, dtype=np.float32)
+        control_points[1:3, 2] = 0.0584
+        control_points = np.tile(np.expand_dims(control_points, 0), [1, 1, 1]).squeeze()
+        mid_point = 0.5*(control_points[1, :] + control_points[2, :])
+        self.grasp_line_plot = np.array([np.zeros((3,)), mid_point, control_points[1], control_points[3], 
+                                    control_points[1], control_points[2], control_points[4]])
 
-    def inference(self, rgb, depth):
+
+    def get_target_grasp_pose(self, msg):
         
-        # convert ros imgmsg to opencv img
-        # rgb = np.frombuffer(rgb.data, dtype=np.uint8).reshape(rgb.height, rgb.width, -1)
-        # depth = np.frombuffer(depth.data, dtype=np.float32).reshape(depth.height, depth.width)
-        rgb = self.bridge.imgmsg_to_cv2(rgb, desired_encoding='bgr8')
-        depth = self.bridge.imgmsg_to_cv2(depth, desired_encoding='32FC1')
-
-
-        self.data["rgb"] = rgb
-        self.data["depth"] = depth 
-
-        # send image to dnn client
-        rospy.loginfo_once("Sending rgb, depth to Contact-GraspNet client")
-        su.sendall_pickle(self.sock, self.data)
-        pred_grasps_cam, scores, contact_pts = su.recvall_pickle(self.sock)
-        if pred_grasps_cam is None:
-            return
-        for k in pred_grasps_cam.keys():
-            if len(scores[k]) == 0:
-                return
-            best_grasp = pred_grasps_cam[k][np.argmax(scores[k])]
-            if k == 1:
-                print(k, pred_grasps_cam[k], scores[k], contact_pts[k])
-                exit()
-        
-        # publish as tf
         while True:
             try:
-                T_base_to_cam = self.tf_buffer.lookup_transform("world", "azure1_rgb_camera_link", rospy.Time(), rospy.Duration(5.0))
-                T_base_to_cam = orh.msg_to_se3(T_base_to_cam)
+                H_base_to_cam = self.tf_buffer.lookup_transform("panda_link0", "azure1_rgb_camera_link", rospy.Time(), rospy.Duration(5.0))
+                H_base_to_hand = self.tf_buffer.lookup_transform("panda_link0", "panda_hand", rospy.Time(), rospy.Duration(5.0))
+                H_cam_to_hand = self.tf_buffer.lookup_transform("azure1_rgb_camera_link", "panda_hand", rospy.Time(), rospy.Duration(5.0))
             except (tf2_ros.LookupException, tf2_ros.ConnectivityException, tf2_ros.ExtrapolationException) as e:
                 print(e)
                 rospy.sleep(0.5)
             else:
+                H_base_to_cam = orh.msg_to_se3(H_base_to_cam)
+                H_base_to_hand = orh.msg_to_se3(H_base_to_hand)
+                H_cam_to_hand = orh.msg_to_se3(H_cam_to_hand)
                 break
-        T_cam_to_grasp = best_grasp
-        T_base_to_grasp = np.matmul(T_base_to_cam, T_cam_to_grasp)
-        t_target_grasp = orh.se3_to_transform_stamped(T_base_to_grasp, "panda_link0", "grasp_pose")
-        self.br.sendTransform(t_target_grasp)
-        
-        self.publish_marker()
 
-    def get_target_grasp_pose(self, msg):
-        
         rgb = rospy.wait_for_message("/azure1/rgb/image_raw", Image)
         depth = rospy.wait_for_message("/azure1/depth_to_rgb/image_raw", Image)
         rgb = self.bridge.imgmsg_to_cv2(rgb, desired_encoding='bgr8')
         depth = self.bridge.imgmsg_to_cv2(depth, desired_encoding='32FC1')
         self.data["rgb"] = rgb
         self.data["depth"] = depth 
+        self.initialize_marker()
+        self.marker_id = 0
+
 
         # send image to dnn client
         rospy.loginfo_once("Sending rgb, depth to Contact-GraspNet client")
         su.sendall_pickle(self.sock, self.data)
         pred_grasps_cam, scores, contact_pts = su.recvall_pickle(self.sock)
         if pred_grasps_cam is None:
-            return
+            return None
+
+        all_pts = []
+        grasps = []
         for k in pred_grasps_cam.keys():
             if len(scores[k]) == 0:
+                rospy.logwarn_once("No grasps are detected")
                 return
-            best_grasp = pred_grasps_cam[k][np.argmax(scores[k])]
-            if k == 1:
-                print(k, pred_grasps_cam[k], scores[k], contact_pts[k])
-                exit()
-        
-        # publish as tf
-        while True:
-            try:
-                T_base_to_cam = self.tf_buffer.lookup_transform("world", "azure1_rgb_camera_link", rospy.Time(), rospy.Duration(5.0))
-                T_base_to_cam = orh.msg_to_se3(T_base_to_cam)
-            except (tf2_ros.LookupException, tf2_ros.ConnectivityException, tf2_ros.ExtrapolationException) as e:
-                print(e)
-                rospy.sleep(0.5)
-            else:
-                break
-        T_cam_to_grasp = best_grasp
-        T_base_to_grasp = np.matmul(T_base_to_cam, T_cam_to_grasp)
-        t_target_grasp = orh.se3_to_transform_stamped(T_base_to_grasp, "panda_link0", "target_grasp_pose")
-        self.br.sendTransform(t_target_grasp)
-        self.publish_marker("target_grasp_pose")
-        return t_target_grasp
+            for i, pred_grasp_cam in enumerate(pred_grasps_cam[k]):
+                H_cam_to_target = pred_grasp_cam
+                
+                ## visualize gripper point
+                # calculate p_cam_to_gripper
+                p_hand_to_gripper = self.grasp_line_plot
+                p_hand_to_gripper[2:,0] = np.sign(p_hand_to_gripper[2:,0]) * 0.08/2
+                p_gripper_to_cam = np.matmul(p_hand_to_gripper, H_cam_to_target[:3, :3].T)
+                p_gripper_to_cam += np.expand_dims(H_cam_to_target[:3, 3], 0) 
+                H_gripper_to_cam = np.concatenate((p_gripper_to_cam, np.ones([7, 1])), axis=1)
+                # p_base_to_gripper
+                p_base_to_gripper = np.matmul(H_base_to_cam, H_gripper_to_cam.T)[:3, :]
+                all_pts.append(p_base_to_gripper) # [3, 15]
+                self.publish_marker(p_base_to_gripper, "panda_link0", scores[k][i])
 
-    def publish_marker(self, frame_id):
+                H_base_to_target = np.matmul(H_base_to_cam, H_cam_to_target)
+                H_base_to_target[:3, :3] = np.matmul(H_base_to_target[:3, :3], H_cam_to_hand[:3, :3])
+                t_target_grasp = orh.se3_to_transform_stamped(H_base_to_target, "panda_link0", "target_grasp_pose")
+                
+                grasp = Grasp()
+                grasp.id = i
+                grasp.score = scores[k][i]
+                grasp.transform = t_target_grasp
+                grasps.append(grasp)
 
+        return grasps
+
+    def initialize_marker(self):
         # Delete all existing markers
         marker_array = MarkerArray()
         marker = Marker()
@@ -146,31 +131,73 @@ class ContactGraspNet():
         marker_array.markers.append(marker)
         self.marker_pub.publish(marker_array)
 
+    def publish_marker(self, pts, frame_id, score):
+
         markers = []
-        for k in panda_gripper_coords.keys():
+        for i in range(pts.shape[1]):
             marker = Marker()
             marker.header.frame_id = frame_id
             marker.header.stamp = rospy.Time()
             marker.type = marker.SPHERE
             marker.action = marker.ADD
-            marker.ns = k
-            marker.pose.position.x = panda_gripper_coords[k][0]
-            marker.pose.position.y = panda_gripper_coords[k][1]
-            marker.pose.position.z = panda_gripper_coords[k][2]
+            marker.ns = str(self.marker_id)
+            marker.id = self.marker_id 
+            self.marker_id += 1
+            marker.pose.position.x = pts[0][i]
+            marker.pose.position.y = pts[1][i]
+            marker.pose.position.z = pts[2][i]
             marker.pose.orientation.x = 0.0
             marker.pose.orientation.y = 0.0
             marker.pose.orientation.z = 0.0
             marker.pose.orientation.w = 1.0
-            marker.color.r = 1
-            marker.color.g = 0
-            marker.color.b = 0
-            marker.color.a = 1.0
-            marker.id = 0
+            marker.color.r = self.cmap(score)[0]
+            marker.color.g = self.cmap(score)[1]
+            marker.color.b = self.cmap(score)[2]
+            marker.color.a = self.cmap(score)[3]
+
             marker.type = Marker.SPHERE
+            marker.scale.x = 0.01
+            marker.scale.y = 0.01
+            marker.scale.z = 0.01
+            markers.append(marker)
+
+        point_pairs = [[0, 1], [1, 2], [2, 4],  [2, 5], [3, 4], [5, 6]]
+        for p1, p2 in point_pairs:
+            marker = Marker()
+            marker.header.frame_id = frame_id
+            marker.header.stamp = rospy.Time()
+            marker.type = marker.LINE_STRIP
+            marker.action = marker.ADD
+            marker.ns = str(self.marker_id)
+            marker.id = self.marker_id 
             marker.scale.x = 0.02
             marker.scale.y = 0.02
             marker.scale.z = 0.02
+            self.marker_id += 1
+            marker.pose.position.x = 0.0
+            marker.pose.position.y = 0.0
+            marker.pose.position.z = 0.0
+            marker.pose.orientation.x = 0.0
+            marker.pose.orientation.y = 0.0
+            marker.pose.orientation.z = 0.0
+            marker.pose.orientation.w = 1.0
+            marker.color.r = self.cmap(score)[0]
+            marker.color.g = self.cmap(score)[1]
+            marker.color.b = self.cmap(score)[2]
+            marker.color.a = self.cmap(score)[3]
+            marker.points = []
+            line_point_1 = Point()
+            line_point_1.x = pts[0][p1]
+            line_point_1.y = pts[1][p1]
+            line_point_1.z = pts[2][p1]
+            marker.points.append(line_point_1)
+            line_point_2 = Point()
+            line_point_2.x = pts[0][p2]
+            line_point_2.y = pts[1][p2]
+            line_point_2.z = pts[2][p2]
+            marker.points.append(line_point_2)
             markers.append(marker)
+
         marker_array = MarkerArray()
         marker_array.markers = markers
         self.marker_pub.publish(marker_array)

@@ -57,12 +57,13 @@ ros && conda activate 6dofgraspnet && \
 
 Azure kinect node
 ```
-ros27 && ROS_NAMESPACE=azure1 roslaunch azure_kinect_ros_driver driver.launch color_resolution:=1536P depth_mode:=WFOV_UNBINNED fps:=5 tf_prefix:=azure1_
+ROS_NAMESPACE=azure1 roslaunch azure_kinect_ros_driver driver.launch color_resolution:=720P depth_mode:=WFOV_UNBINNED fps:=5 tf_prefix:=azure1_
+roslaunch azure_kinect_manager single_azure_manager.launch 
 ```
 
 contact graspnet server
 ```
-ros27 && rosrun deep_grasping_ros contact_grasp_server.py
+rosrun deep_grasping_ros contact_grasp_server.py
 ```
 
 contact graspnet client
