@@ -14,7 +14,7 @@ from open3d_ros_helper import open3d_ros_helper as orh
 from visualization_msgs.msg import MarkerArray, Marker
 from geometry_msgs.msg import Point
 from deep_grasping_ros.msg import Grasp
-from deep_grasping_ros.srv import GetTargetContactGrasp
+from deep_grasping_ros.srv import GetTargetContactGrasp, GetTargetContactGraspResponse
 from scipy.spatial.transform import Rotation as R
 import matplotlib.pyplot as plt
 from matplotlib import cm
@@ -28,7 +28,7 @@ class ContactGraspNet():
         rospy.loginfo("Starting contact_graspnet node")
 
         # initialize dnn server 
-        self.sock, add = su.initialize_server('localhost', 7777)
+        self.grasp_sock, _ = su.initialize_server('localhost', 5555)
         rospy.loginfo("Wating for camera info")
         self.camera_info = rospy.wait_for_message("/azure1/rgb/camera_info", CameraInfo)
         self.data = {}
@@ -85,17 +85,18 @@ class ContactGraspNet():
 
         # send image to dnn client
         rospy.loginfo_once("Sending rgb, depth to Contact-GraspNet client")
-        su.sendall_pickle(self.sock, self.data)
-        pred_grasps_cam, scores, contact_pts = su.recvall_pickle(self.sock)
+        su.sendall_pickle(self.grasp_sock, self.data)
+        pred_grasps_cam, scores, contact_pts = su.recvall_pickle(self.grasp_sock)
         if pred_grasps_cam is None:
+            rospy.logwarn_once("No grasps are detected")
             return None
 
         all_pts = []
         grasps = []
         for k in pred_grasps_cam.keys():
             if len(scores[k]) == 0:
-                rospy.logwarn_once("No grasps are detected")
-                return
+                # rospy.logwarn_once("No grasps are detected")
+                continue
             for i, pred_grasp_cam in enumerate(pred_grasps_cam[k]):
                 H_cam_to_target = pred_grasp_cam
                 
@@ -116,12 +117,12 @@ class ContactGraspNet():
                 t_target_grasp = orh.se3_to_transform_stamped(H_base_to_target, "panda_link0", "target_grasp_pose")
                 
                 grasp = Grasp()
-                grasp.id = i
+                grasp.id = "obj_{}_grasp_{}".format(int(k), i)
                 grasp.score = scores[k][i]
                 grasp.transform = t_target_grasp
                 grasps.append(grasp)
 
-        return grasps
+        return GetTargetContactGraspResponse(grasps)
 
     def initialize_marker(self):
         # Delete all existing markers
