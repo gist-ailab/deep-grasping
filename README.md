@@ -2,6 +2,7 @@
 # Deep Grasping ROS
 
 - ROS wrapper for DNN based robotic grasping algorithms
+- Support GQ-CNN [[paper]](http://robotics.sciencemag.org/cgi/content/full/4/26/eaau4984?ijkey=IogH9u4mOL70s&keytype=ref&siteid=robotics) [[code]](https://github.com/BerkeleyAutomation/gqcnn)
 - Support 6-DoF-GraspNet [[paper]](https://arxiv.org/abs/1905.10520) [[code]](https://github.com/NVlabs/6dof-graspnet)
 - Support Contact-GraspNet [[paper]](https://arxiv.org/abs/2103.14127) [[code]](https://github.com/NVlabs/contact_graspnet)
 
@@ -10,6 +11,32 @@
 - support GQCNN
 - publish the grasping point as TF
 - add install documentation
+
+```
+rosservice call /get_target_grasp_pose
+```
+
+## GQ-CNN
+
+### RUN
+
+GQ-CNN Server
+```
+rosrun deep_grasping_ros fc_gqcnn_server.py
+```
+
+GQ-CNN Client
+```
+conda activate gqcnn
+roscd deep_grasping_ros/src/gqcnn && python gqcnn_client.py
+```
+
+FC-GQ-CNN Client
+```
+conda activate gqcnn
+roscd deep_grasping_ros/src/gqcnn && python fc_gqcnn_client.py
+```
+
 
 
 ## 6-DoF-GraspNet
@@ -27,6 +54,9 @@ conda activate 6dofgraspnet && pip install -r requirements.txt
 ```
 
 ### RUN
+
+<img src="./imgs/gqcnn.png" height="250">
+
 
 Azure kinect node
 ```
@@ -48,7 +78,6 @@ ros && conda activate 6dofgraspnet && \
 
 
 
-
 ## Contact-GraspNet
 
 <img src="./imgs/contact_grasp.png" height="250">
@@ -58,7 +87,6 @@ ros && conda activate 6dofgraspnet && \
 Azure kinect node
 ```
 ROS_NAMESPACE=azure1 roslaunch azure_kinect_ros_driver driver.launch color_resolution:=720P depth_mode:=WFOV_UNBINNED fps:=5 tf_prefix:=azure1_
-roslaunch azure_kinect_manager single_azure_manager.launch 
 ```
 
 contact graspnet server
@@ -71,7 +99,14 @@ contact graspnet client
 ```
 ros && conda activate contact_graspnet_env \
     && cd ~/catkin_ws/src/deep_grasping_ros/src/contact_graspnet \
-    && CUDA_VISIBLE_DEVICES=1 python contact_graspnet/contact_grasp_client.py
+    && CUDA_VISIBLE_DEVICES=1 python contact_graspnet/contact_grasp_client.py --local_regions --filter_grasps
+```
+
+```
+conda activate uoais \
+&& cd ~/catkin_ws/src/deep_grasping_ros/src/uoais \
+&& CUDA_VISIBLE_DEVICES=1 python demo/uoais_client.py
+
 ```
 
 
