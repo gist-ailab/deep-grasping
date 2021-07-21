@@ -6,17 +6,18 @@
 - Support 6-DoF-GraspNet [[paper]](https://arxiv.org/abs/1905.10520) [[code]](https://github.com/NVlabs/6dof-graspnet)
 - Support Contact-GraspNet [[paper]](https://arxiv.org/abs/2103.14127) [[code]](https://github.com/NVlabs/contact_graspnet)
 
-## TO DO
-- support GGCNN
-- support GQCNN
-- publish the grasping point as TF
-- add install documentation
 
+To generate a grasping point, simply use `get_target_grasp_pose` service
 ```
 rosservice call /get_target_grasp_pose
 ```
 
+
+
 ## GQ-CNN
+
+<img src="./imgs/gqcnn.png" height="250">
+
 
 ### RUN
 
@@ -33,15 +34,15 @@ roscd deep_grasping_ros/src/gqcnn && python gqcnn_client.py
 
 FC-GQ-CNN Client
 ```
-conda activate gqcnn
-roscd deep_grasping_ros/src/gqcnn && python fc_gqcnn_client.py
+conda activate gqcnn \
+&& roscd deep_grasping_ros/src/gqcnn \
+&& python fc_gqcnn_client.py
 ```
 
 
 
 ## 6-DoF-GraspNet
 
-<img src="./imgs/6dof_grasp.png" height="250">
 
 
 ### Setup
@@ -55,7 +56,7 @@ conda activate 6dofgraspnet && pip install -r requirements.txt
 
 ### RUN
 
-<img src="./imgs/gqcnn.png" height="250">
+<img src="./imgs/6dof_grasp.png" height="250">
 
 
 Azure kinect node
@@ -65,14 +66,15 @@ ros27 && ROS_NAMESPACE=azure1 roslaunch azure_kinect_ros_driver driver.launch co
 
 6-dof-graspnet server
 ```
-ros && conda activate 6dofgraspnet && cd ~/catkin_ws/src/deep_grasping_ros/src \
+conda activate 6dofgraspnet \ 
+    && roscd deep_grasping_ros/src \
     && python 6dgn_ros_server.py
 ```
 
 6-dof-graspnet client
 ```
-ros && conda activate 6dofgraspnet && \
-    cd ~/catkin_ws/src/deep_grasping_ros/src/6dof-graspnet \
+conda activate 6dofgraspnet \
+    && roscd deep_grasping_ros/src/6dof-graspnet \
     && python -m demo.6dgn_client --vae_checkpoint_folder checkpoints/npoints_1024_train_evaluator_0_allowed_categories__ngpus_1_/
 ```
 
@@ -98,14 +100,14 @@ contact graspnet client
 
 ```
 ros && conda activate contact_graspnet_env \
-    && cd ~/catkin_ws/src/deep_grasping_ros/src/contact_graspnet \
+    && roscd deep_grasping_ros/src/contact_graspnet \
     && CUDA_VISIBLE_DEVICES=1 python contact_graspnet/contact_grasp_client.py --local_regions --filter_grasps
 ```
 
 ```
 conda activate uoais \
-&& cd ~/catkin_ws/src/deep_grasping_ros/src/uoais \
-&& CUDA_VISIBLE_DEVICES=1 python demo/uoais_client.py
+    && roscd deep_grasping_ros/src/uoais \
+    && CUDA_VISIBLE_DEVICES=1 python demo/uoais_client.py
 
 ```
 
