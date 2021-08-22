@@ -12,7 +12,15 @@ To generate a grasping point, simply use `get_target_grasp_pose` service
 rosservice call /get_target_grasp_pose
 ```
 
+Before run the deep grasping nodes, launch camera nodes
+```
+ROS_NAMESPACE=azure1 roslaunch azure_kinect_ros_driver driver.launch color_resolution:=1440P depth_mode:=WFOV_UNBINNED fps:=5 tf_prefix:=azure1_
+```
 
+## TODO
+
+- python 2 --> python 3
+- remove TCP connections
 
 ## GQ-CNN
 
@@ -23,7 +31,7 @@ rosservice call /get_target_grasp_pose
 
 GQ-CNN Server
 ```
-rosrun deep_grasping_ros fc_gqcnn_server.py
+rosrun deep_grasping_ros gqcnn_server.py
 ```
 
 GQ-CNN Client
@@ -34,9 +42,9 @@ roscd deep_grasping_ros/src/gqcnn && python gqcnn_client.py
 
 FC-GQ-CNN Client
 ```
-conda activate gqcnn \
-&& roscd deep_grasping_ros/src/gqcnn \
-&& python fc_gqcnn_client.py
+conda activate gqcnn &&  \
+    roscd deep_grasping_ros/src/gqcnn && \
+    python fc_gqcnn_client.py
 ```
 
 
@@ -93,15 +101,15 @@ ROS_NAMESPACE=azure1 roslaunch azure_kinect_ros_driver driver.launch color_resol
 
 contact graspnet server
 ```
-rosrun deep_grasping_ros contact_grasp_server.py
+ros27 && roscd deep_grasping_ros $$ python src/contact_grasp_server.py
 ```
 
 contact graspnet client
 
 ```
-ros && conda activate contact_graspnet_env \
+conda activate contact_graspnet_env \
     && roscd deep_grasping_ros/src/contact_graspnet \
-    && CUDA_VISIBLE_DEVICES=1 python contact_graspnet/contact_grasp_client.py --local_regions --filter_grasps
+    && CUDA_VISIBLE_DEVICES=0 python contact_graspnet/contact_grasp_client.py --local_regions --filter_grasps
 ```
 
 ```

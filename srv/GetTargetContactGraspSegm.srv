@@ -1,0 +1,5 @@
+---
+deep_grasping_ros/Grasp[] target_grasps
+sensor_msgs/Image segmap
+int32[] occlusions
+

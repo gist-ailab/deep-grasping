@@ -33,7 +33,8 @@ class ContactGraspNet():
         self.camera_info = rospy.wait_for_message("/azure1/rgb/camera_info", CameraInfo)
         self.data = {}
         self.data["intrinsics_matrix"] = np.array(self.camera_info.K).reshape(3, 3)
-        
+        rospy.loginfo("Successfully got camera info")
+
         self.bridge = cv_bridge.CvBridge()
         self.grasp_srv = rospy.Service('/get_target_grasp_pose', GetTargetContactGrasp, self.get_target_grasp_pose)
 
@@ -55,6 +56,9 @@ class ContactGraspNet():
         mid_point = 0.5*(control_points[1, :] + control_points[2, :])
         self.grasp_line_plot = np.array([np.zeros((3,)), mid_point, control_points[1], control_points[3], 
                                     control_points[1], control_points[2], control_points[4]])
+        
+        self.uoais_vm_pub = rospy.Publisher("uoais/visible_mask", Image, queue_size=1)
+        self.uoais_am_pub = rospy.Publisher("uoais/amodal_mask", Image, queue_size=1)
 
 
     def get_target_grasp_pose(self, msg):
@@ -86,7 +90,13 @@ class ContactGraspNet():
         # send image to dnn client
         rospy.loginfo_once("Sending rgb, depth to Contact-GraspNet client")
         su.sendall_pickle(self.grasp_sock, self.data)
-        pred_grasps_cam, scores, contact_pts = su.recvall_pickle(self.grasp_sock)
+        pred_grasps_cam, scores, contact_pts, segm_result = su.recvall_pickle(self.grasp_sock)
+        segmap, amodal_vis, visible_vis, occlusions = \
+            segm_result["segm"], segm_result["amodal_vis"], segm_result["visible_vis"], segm_result["occlusions"]
+        self.uoais_vm_pub.publish(self.bridge.cv2_to_imgmsg(visible_vis))
+        self.uoais_am_pub.publish(self.bridge.cv2_to_imgmsg(amodal_vis))
+
+
         if pred_grasps_cam is None:
             rospy.logwarn_once("No grasps are detected")
             return None
@@ -122,7 +132,7 @@ class ContactGraspNet():
                 grasp.transform = t_target_grasp
                 grasps.append(grasp)
 
-        return GetTargetContactGraspResponse(grasps)
+        return GetTargetContactGraspResponse(grasps, segmap, occlusions)
 
     def initialize_marker(self):
         # Delete all existing markers
@@ -133,6 +143,7 @@ class ContactGraspNet():
         self.marker_pub.publish(marker_array)
 
     def publish_marker(self, pts, frame_id, score):
+
 
         markers = []
         for i in range(pts.shape[1]):
@@ -202,6 +213,7 @@ class ContactGraspNet():
         marker_array = MarkerArray()
         marker_array.markers = markers
         self.marker_pub.publish(marker_array)
+
 
 if __name__ == '__main__':
 

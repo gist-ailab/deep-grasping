@@ -106,8 +106,10 @@ class GQCNN():
         pos = pred_grasp["pose"].position
         cx = int(pred_grasp["x"])
         cy = int(pred_grasp["y"])
-        z = depth[cy, cx] - 0.09
+        z = depth[cy, cx] - 0.1034
+        # z = pred_grasp["depth"] - 0.1034
         if z == 0:
+            print("oh my god!!!!!!!!11")
             z = np.median(depth[cy-5:cy+5, cx-5:cx+5])
         r = R.from_rotvec(pred_grasp["angle"] * np.array([0, 0, 1]))
         H_cam_to_target[:3, :3] = r.as_dcm()
@@ -136,6 +138,7 @@ class GQCNN():
         grasp.id = "obj"
         grasp.score = pred_grasp["q_value"]
         grasp.transform = t_target_grasp
+        grasp.width = pred_grasp["width"]
         grasps.append(grasp)
 
         return GetTargetContactGraspResponse(grasps)

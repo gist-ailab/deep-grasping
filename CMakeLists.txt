@@ -13,6 +13,7 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   message_generation
   geometry_msgs
+  sensor_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -57,6 +58,7 @@ add_message_files(
 ## Generate services in the 'srv' folder
 add_service_files(
   FILES
+  GetTargetContactGraspSegm.srv
   GetTargetContactGrasp.srv
   GetTargetPos.srv
 )
@@ -73,6 +75,7 @@ generate_messages(
   DEPENDENCIES
   std_msgs
   geometry_msgs
+  sensor_msgs
 )
 
 ################################################
