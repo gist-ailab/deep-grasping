@@ -14,7 +14,7 @@ from open3d_ros_helper import open3d_ros_helper as orh
 from visualization_msgs.msg import MarkerArray, Marker
 from geometry_msgs.msg import Point
 from deep_grasping_ros.msg import Grasp
-from deep_grasping_ros.srv import GetTargetContactGrasp, GetTargetContactGraspResponse
+from deep_grasping_ros.srv import GetTargetContactGraspSegm, GetTargetContactGraspSegmResponse
 from scipy.spatial.transform import Rotation as R
 import matplotlib.pyplot as plt
 from matplotlib import cm
@@ -36,7 +36,7 @@ class ContactGraspNet():
         rospy.loginfo("Successfully got camera info")
 
         self.bridge = cv_bridge.CvBridge()
-        self.grasp_srv = rospy.Service('/get_target_grasp_pose', GetTargetContactGrasp, self.get_target_grasp_pose)
+        self.grasp_srv = rospy.Service('/get_target_grasp_pose', GetTargetContactGraspSegm, self.get_target_grasp_pose)
 
 
         # tf publisher
@@ -92,7 +92,7 @@ class ContactGraspNet():
         su.sendall_pickle(self.grasp_sock, self.data)
         pred_grasps_cam, scores, contact_pts, segm_result = su.recvall_pickle(self.grasp_sock)
         segmap, amodal_vis, visible_vis, occlusions = \
-            segm_result["segm"], segm_result["amodal_vis"], segm_result["visible_vis"], segm_result["occlusions"]
+            self.bridge.cv2_to_imgmsg(segm_result["segm"]), segm_result["amodal_vis"], segm_result["visible_vis"], segm_result["occlusions"].tolist()
         self.uoais_vm_pub.publish(self.bridge.cv2_to_imgmsg(visible_vis))
         self.uoais_am_pub.publish(self.bridge.cv2_to_imgmsg(amodal_vis))
 
@@ -132,7 +132,7 @@ class ContactGraspNet():
                 grasp.transform = t_target_grasp
                 grasps.append(grasp)
 
-        return GetTargetContactGraspResponse(grasps, segmap, occlusions)
+        return GetTargetContactGraspSegmResponse(grasps, segmap, occlusions)
 
     def initialize_marker(self):
         # Delete all existing markers
