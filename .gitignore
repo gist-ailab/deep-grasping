@@ -1,5 +1,6 @@
 .vscode/
 pointnet2/
+uoais/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

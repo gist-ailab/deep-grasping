@@ -101,7 +101,7 @@ ROS_NAMESPACE=azure1 roslaunch azure_kinect_ros_driver driver.launch color_resol
 
 contact graspnet server
 ```
-ros27 && roscd deep_grasping_ros $$ python src/contact_grasp_server.py
+ros27 && roscd deep_grasping_ros && python src/contact_grasp_server.py
 ```
 
 contact graspnet client
