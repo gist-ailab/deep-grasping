@@ -1,0 +1,3454 @@
+Panels:
+  - Class: rviz/Displays
+    Help Height: 0
+    Name: Displays
+    Property Tree Widget:
+      Expanded:
+        - /MotionPlanning1/Scene Geometry1
+        - /MotionPlanning1/Scene Robot1
+        - /MotionPlanning1/Planning Request1
+        - /PointCloud21
+      Splitter Ratio: 0.5
+    Tree Height: 140
+  - Class: rviz/Selection
+    Name: Selection
+  - Class: rviz/Tool Properties
+    Expanded:
+      - /2D Pose Estimate1
+      - /2D Nav Goal1
+      - /Publish Point1
+    Name: Tool Properties
+    Splitter Ratio: 0.5886790156364441
+  - Class: rviz/Views
+    Expanded:
+      - /Current View1
+    Name: Views
+    Splitter Ratio: 0.5
+  - Class: rviz/Time
+    Experimental: false
+    Name: Time
+    SyncMode: 0
+    SyncSource: Image
+Preferences:
+  PromptSaveOnExit: true
+Toolbars:
+  toolButtonStyle: 2
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Alpha: 0.5
+      Cell Size: 1
+      Class: rviz/Grid
+      Color: 160; 160; 164
+      Enabled: true
+      Line Style:
+        Line Width: 0.029999999329447746
+        Value: Lines
+      Name: Grid
+      Normal Cell Count: 0
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Plane: XY
+      Plane Cell Count: 10
+      Reference Frame: <Fixed Frame>
+      Value: true
+    - Acceleration_Scaling_Factor: 1
+      Class: moveit_rviz_plugin/MotionPlanning
+      Enabled: true
+      Move Group Namespace: ""
+      MoveIt_Allow_Approximate_IK: false
+      MoveIt_Allow_External_Program: false
+      MoveIt_Allow_Replanning: false
+      MoveIt_Allow_Sensor_Positioning: false
+      MoveIt_Planning_Attempts: 10
+      MoveIt_Planning_Time: 5
+      MoveIt_Use_Cartesian_Path: false
+      MoveIt_Use_Constraint_Aware_IK: false
+      MoveIt_Warehouse_Host: 127.0.0.1
+      MoveIt_Warehouse_Port: 33829
+      MoveIt_Workspace:
+        Center:
+          X: 0
+          Y: 0
+          Z: 0
+        Size:
+          X: 2
+          Y: 2
+          Z: 2
+      Name: MotionPlanning
+      Planned Path:
+        Color Enabled: false
+        Interrupt Display: false
+        Links:
+          All Links Enabled: true
+          Expand Joint Details: false
+          Expand Link Details: false
+          Expand Tree: false
+          Link Tree Style: Links in Alphabetic Order
+          azure_kinect:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          panda_hand:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          panda_leftfinger:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          panda_link0:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          panda_link1:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          panda_link2:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          panda_link3:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          panda_link4:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          panda_link5:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          panda_link6:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          panda_link7:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          panda_link8:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          panda_rightfinger:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          world:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+        Loop Animation: false
+        Robot Alpha: 0.5
+        Robot Color: 150; 50; 150
+        Show Robot Collision: false
+        Show Robot Visual: true
+        Show Trail: false
+        State Display Time: 0.05 s
+        Trail Step Size: 1
+        Trajectory Topic: /move_group/display_planned_path
+      Planning Metrics:
+        Payload: 1
+        Show Joint Torques: false
+        Show Manipulability: false
+        Show Manipulability Index: false
+        Show Weight Limit: false
+        TextHeight: 0.07999999821186066
+      Planning Request:
+        Colliding Link Color: 255; 0; 0
+        Goal State Alpha: 1
+        Goal State Color: 250; 128; 0
+        Interactive Marker Size: 0
+        Joint Violation Color: 255; 0; 255
+        Planning Group: hand
+        Query Goal State: false
+        Query Start State: false
+        Show Workspace: false
+        Start State Alpha: 1
+        Start State Color: 0; 255; 0
+      Planning Scene Topic: move_group/monitored_planning_scene
+      Robot Description: robot_description
+      Scene Geometry:
+        Scene Alpha: 1
+        Scene Color: 50; 230; 50
+        Scene Display Time: 0.009999999776482582
+        Show Scene Geometry: true
+        Voxel Coloring: Z-Axis
+        Voxel Rendering: Occupied Voxels
+      Scene Robot:
+        Attached Body Color: 150; 50; 150
+        Links:
+          All Links Enabled: true
+          Expand Joint Details: false
+          Expand Link Details: false
+          Expand Tree: false
+          Link Tree Style: Links in Alphabetic Order
+          azure_kinect:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          panda_hand:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          panda_leftfinger:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          panda_link0:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          panda_link1:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          panda_link2:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          panda_link3:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          panda_link4:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          panda_link5:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          panda_link6:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          panda_link7:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          panda_link8:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          panda_rightfinger:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          world:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+        Robot Alpha: 1
+        Show Robot Collision: false
+        Show Robot Visual: true
+      Value: true
+      Velocity_Scaling_Factor: 1
+    - Class: rviz/TF
+      Enabled: true
+      Frame Timeout: 15
+      Frames:
+        All Enabled: false
+        azure1_camera_base:
+          Value: false
+        azure1_camera_body:
+          Value: false
+        azure1_camera_visor:
+          Value: false
+        azure1_depth_camera_link:
+          Value: false
+        azure1_imu_link:
+          Value: false
+        azure1_rgb_camera_link:
+          Value: true
+        azure_kinect:
+          Value: false
+        base:
+          Value: true
+        panda_EE:
+          Value: false
+        panda_K:
+          Value: false
+        panda_hand:
+          Value: true
+        panda_leftfinger:
+          Value: false
+        panda_link0:
+          Value: false
+        panda_link1:
+          Value: false
+        panda_link2:
+          Value: false
+        panda_link3:
+          Value: false
+        panda_link4:
+          Value: false
+        panda_link5:
+          Value: false
+        panda_link6:
+          Value: false
+        panda_link7:
+          Value: false
+        panda_link8:
+          Value: false
+        panda_rightfinger:
+          Value: false
+        target_grasp_pose:
+          Value: true
+        world:
+          Value: false
+      Marker Scale: 1
+      Name: TF
+      Show Arrows: true
+      Show Axes: true
+      Show Names: false
+      Tree:
+        world:
+          base:
+            panda_link0:
+              panda_link1:
+                panda_link2:
+                  panda_link3:
+                    panda_link4:
+                      panda_link5:
+                        panda_link6:
+                          panda_link7:
+                            panda_link8:
+                              azure_kinect:
+                                {}
+                              panda_EE:
+                                panda_K:
+                                  {}
+                              panda_hand:
+                                azure1_camera_base:
+                                  azure1_camera_body:
+                                    {}
+                                  azure1_camera_visor:
+                                    {}
+                                  azure1_depth_camera_link:
+                                    azure1_imu_link:
+                                      {}
+                                    azure1_rgb_camera_link:
+                                      {}
+                                panda_leftfinger:
+                                  {}
+                                panda_rightfinger:
+                                  {}
+              target_grasp_pose:
+                {}
+      Update Interval: 0
+      Value: true
+    - Class: rviz/Marker
+      Enabled: true
+      Marker Topic: visualization_marker
+      Name: Marker
+      Namespaces:
+        {}
+      Queue Size: 100
+      Value: true
+    - Class: rviz/Image
+      Enabled: true
+      Image Topic: /uoais/amodal_mask
+      Max Value: 1
+      Median window: 5
+      Min Value: 0
+      Name: Image
+      Normalize Range: true
+      Queue Size: 2
+      Transport Hint: raw
+      Unreliable: false
+      Value: true
+    - Class: rviz/MarkerArray
+      Enabled: true
+      Marker Topic: /target_grasp
+      Name: MarkerArray
+      Namespaces:
+        0: true
+        1: true
+        10: true
+        100: true
+        1000: true
+        1001: true
+        1002: true
+        1003: true
+        1004: true
+        1005: true
+        1006: true
+        1007: true
+        1008: true
+        1009: true
+        101: true
+        1010: true
+        1011: true
+        1012: true
+        1013: true
+        1014: true
+        1015: true
+        1016: true
+        1017: true
+        1018: true
+        1019: true
+        102: true
+        1020: true
+        1021: true
+        1022: true
+        1023: true
+        1024: true
+        1025: true
+        1026: true
+        1027: true
+        1028: true
+        1029: true
+        103: true
+        1030: true
+        1031: true
+        1032: true
+        1033: true
+        1034: true
+        1035: true
+        1036: true
+        1037: true
+        1038: true
+        1039: true
+        104: true
+        1040: true
+        1041: true
+        1042: true
+        1043: true
+        1044: true
+        1045: true
+        1046: true
+        1047: true
+        1048: true
+        1049: true
+        105: true
+        1050: true
+        1051: true
+        1052: true
+        1053: true
+        1054: true
+        1055: true
+        1056: true
+        1057: true
+        1058: true
+        1059: true
+        106: true
+        1060: true
+        1061: true
+        1062: true
+        1063: true
+        1064: true
+        1065: true
+        1066: true
+        1067: true
+        1068: true
+        1069: true
+        107: true
+        1070: true
+        1071: true
+        1072: true
+        1073: true
+        1074: true
+        1075: true
+        1076: true
+        1077: true
+        1078: true
+        1079: true
+        108: true
+        1080: true
+        1081: true
+        1082: true
+        1083: true
+        1084: true
+        1085: true
+        1086: true
+        1087: true
+        1088: true
+        1089: true
+        109: true
+        1090: true
+        1091: true
+        1092: true
+        1093: true
+        1094: true
+        1095: true
+        1096: true
+        1097: true
+        1098: true
+        1099: true
+        11: true
+        110: true
+        1100: true
+        1101: true
+        1102: true
+        1103: true
+        1104: true
+        1105: true
+        1106: true
+        1107: true
+        1108: true
+        1109: true
+        111: true
+        1110: true
+        1111: true
+        1112: true
+        1113: true
+        1114: true
+        1115: true
+        1116: true
+        1117: true
+        1118: true
+        1119: true
+        112: true
+        1120: true
+        1121: true
+        1122: true
+        1123: true
+        1124: true
+        1125: true
+        1126: true
+        1127: true
+        1128: true
+        1129: true
+        113: true
+        1130: true
+        1131: true
+        1132: true
+        1133: true
+        1134: true
+        1135: true
+        1136: true
+        1137: true
+        1138: true
+        1139: true
+        114: true
+        1140: true
+        1141: true
+        1142: true
+        1143: true
+        1144: true
+        1145: true
+        1146: true
+        1147: true
+        1148: true
+        1149: true
+        115: true
+        1150: true
+        1151: true
+        1152: true
+        1153: true
+        1154: true
+        1155: true
+        1156: true
+        1157: true
+        1158: true
+        1159: true
+        116: true
+        1160: true
+        1161: true
+        1162: true
+        1163: true
+        1164: true
+        1165: true
+        1166: true
+        1167: true
+        1168: true
+        1169: true
+        117: true
+        1170: true
+        1171: true
+        1172: true
+        1173: true
+        1174: true
+        1175: true
+        1176: true
+        1177: true
+        1178: true
+        1179: true
+        118: true
+        1180: true
+        1181: true
+        1182: true
+        1183: true
+        1184: true
+        1185: true
+        1186: true
+        1187: true
+        1188: true
+        1189: true
+        119: true
+        1190: true
+        1191: true
+        1192: true
+        1193: true
+        1194: true
+        1195: true
+        1196: true
+        1197: true
+        1198: true
+        1199: true
+        12: true
+        120: true
+        1200: true
+        1201: true
+        1202: true
+        1203: true
+        1204: true
+        1205: true
+        1206: true
+        1207: true
+        1208: true
+        1209: true
+        121: true
+        1210: true
+        1211: true
+        1212: true
+        1213: true
+        1214: true
+        1215: true
+        1216: true
+        1217: true
+        1218: true
+        1219: true
+        122: true
+        1220: true
+        1221: true
+        1222: true
+        1223: true
+        1224: true
+        1225: true
+        1226: true
+        1227: true
+        1228: true
+        1229: true
+        123: true
+        1230: true
+        1231: true
+        1232: true
+        1233: true
+        1234: true
+        1235: true
+        1236: true
+        1237: true
+        1238: true
+        1239: true
+        124: true
+        1240: true
+        1241: true
+        1242: true
+        1243: true
+        1244: true
+        1245: true
+        1246: true
+        1247: true
+        1248: true
+        1249: true
+        125: true
+        1250: true
+        1251: true
+        1252: true
+        1253: true
+        1254: true
+        1255: true
+        1256: true
+        1257: true
+        1258: true
+        1259: true
+        126: true
+        1260: true
+        1261: true
+        1262: true
+        1263: true
+        1264: true
+        1265: true
+        1266: true
+        1267: true
+        1268: true
+        1269: true
+        127: true
+        1270: true
+        1271: true
+        1272: true
+        1273: true
+        1274: true
+        1275: true
+        1276: true
+        1277: true
+        1278: true
+        1279: true
+        128: true
+        1280: true
+        1281: true
+        1282: true
+        1283: true
+        1284: true
+        1285: true
+        1286: true
+        1287: true
+        1288: true
+        1289: true
+        129: true
+        1290: true
+        1291: true
+        1292: true
+        1293: true
+        1294: true
+        1295: true
+        1296: true
+        1297: true
+        1298: true
+        1299: true
+        13: true
+        130: true
+        1300: true
+        1301: true
+        1302: true
+        1303: true
+        1304: true
+        1305: true
+        1306: true
+        1307: true
+        1308: true
+        1309: true
+        131: true
+        1310: true
+        1311: true
+        1312: true
+        1313: true
+        1314: true
+        1315: true
+        1316: true
+        1317: true
+        1318: true
+        1319: true
+        132: true
+        1320: true
+        1321: true
+        1322: true
+        1323: true
+        1324: true
+        1325: true
+        1326: true
+        1327: true
+        1328: true
+        1329: true
+        133: true
+        1330: true
+        1331: true
+        1332: true
+        1333: true
+        1334: true
+        1335: true
+        1336: true
+        1337: true
+        1338: true
+        1339: true
+        134: true
+        1340: true
+        1341: true
+        1342: true
+        1343: true
+        1344: true
+        1345: true
+        1346: true
+        1347: true
+        1348: true
+        1349: true
+        135: true
+        1350: true
+        1351: true
+        1352: true
+        1353: true
+        1354: true
+        1355: true
+        1356: true
+        1357: true
+        1358: true
+        1359: true
+        136: true
+        1360: true
+        1361: true
+        1362: true
+        1363: true
+        1364: true
+        1365: true
+        1366: true
+        1367: true
+        1368: true
+        1369: true
+        137: true
+        1370: true
+        1371: true
+        1372: true
+        1373: true
+        1374: true
+        1375: true
+        1376: true
+        1377: true
+        1378: true
+        1379: true
+        138: true
+        1380: true
+        1381: true
+        1382: true
+        1383: true
+        1384: true
+        1385: true
+        1386: true
+        1387: true
+        1388: true
+        1389: true
+        139: true
+        1390: true
+        1391: true
+        1392: true
+        1393: true
+        1394: true
+        1395: true
+        1396: true
+        1397: true
+        1398: true
+        1399: true
+        14: true
+        140: true
+        1400: true
+        1401: true
+        1402: true
+        1403: true
+        1404: true
+        1405: true
+        1406: true
+        1407: true
+        1408: true
+        1409: true
+        141: true
+        1410: true
+        1411: true
+        1412: true
+        1413: true
+        1414: true
+        1415: true
+        1416: true
+        1417: true
+        1418: true
+        1419: true
+        142: true
+        1420: true
+        1421: true
+        1422: true
+        1423: true
+        1424: true
+        1425: true
+        1426: true
+        1427: true
+        1428: true
+        1429: true
+        143: true
+        1430: true
+        1431: true
+        1432: true
+        1433: true
+        1434: true
+        1435: true
+        1436: true
+        1437: true
+        1438: true
+        1439: true
+        144: true
+        1440: true
+        1441: true
+        1442: true
+        1443: true
+        1444: true
+        1445: true
+        1446: true
+        1447: true
+        1448: true
+        1449: true
+        145: true
+        1450: true
+        1451: true
+        1452: true
+        1453: true
+        1454: true
+        1455: true
+        1456: true
+        1457: true
+        1458: true
+        1459: true
+        146: true
+        1460: true
+        1461: true
+        1462: true
+        1463: true
+        1464: true
+        1465: true
+        1466: true
+        1467: true
+        1468: true
+        1469: true
+        147: true
+        1470: true
+        1471: true
+        1472: true
+        1473: true
+        1474: true
+        1475: true
+        1476: true
+        1477: true
+        1478: true
+        1479: true
+        148: true
+        1480: true
+        1481: true
+        1482: true
+        1483: true
+        1484: true
+        1485: true
+        1486: true
+        1487: true
+        1488: true
+        1489: true
+        149: true
+        1490: true
+        1491: true
+        1492: true
+        1493: true
+        1494: true
+        1495: true
+        1496: true
+        1497: true
+        1498: true
+        1499: true
+        15: true
+        150: true
+        1500: true
+        1501: true
+        1502: true
+        1503: true
+        1504: true
+        1505: true
+        1506: true
+        1507: true
+        1508: true
+        1509: true
+        151: true
+        1510: true
+        1511: true
+        1512: true
+        1513: true
+        1514: true
+        1515: true
+        1516: true
+        1517: true
+        1518: true
+        1519: true
+        152: true
+        1520: true
+        1521: true
+        1522: true
+        1523: true
+        1524: true
+        1525: true
+        1526: true
+        1527: true
+        1528: true
+        1529: true
+        153: true
+        1530: true
+        1531: true
+        1532: true
+        1533: true
+        1534: true
+        1535: true
+        1536: true
+        1537: true
+        1538: true
+        1539: true
+        154: true
+        1540: true
+        1541: true
+        1542: true
+        1543: true
+        1544: true
+        1545: true
+        1546: true
+        1547: true
+        1548: true
+        1549: true
+        155: true
+        1550: true
+        1551: true
+        1552: true
+        1553: true
+        1554: true
+        1555: true
+        1556: true
+        1557: true
+        1558: true
+        1559: true
+        156: true
+        1560: true
+        1561: true
+        1562: true
+        1563: true
+        1564: true
+        1565: true
+        1566: true
+        1567: true
+        1568: true
+        1569: true
+        157: true
+        1570: true
+        1571: true
+        1572: true
+        1573: true
+        1574: true
+        1575: true
+        1576: true
+        1577: true
+        1578: true
+        1579: true
+        158: true
+        1580: true
+        1581: true
+        1582: true
+        1583: true
+        1584: true
+        1585: true
+        1586: true
+        1587: true
+        1588: true
+        1589: true
+        159: true
+        1590: true
+        1591: true
+        1592: true
+        1593: true
+        1594: true
+        1595: true
+        1596: true
+        1597: true
+        1598: true
+        1599: true
+        16: true
+        160: true
+        1600: true
+        1601: true
+        1602: true
+        1603: true
+        1604: true
+        1605: true
+        1606: true
+        1607: true
+        1608: true
+        1609: true
+        161: true
+        1610: true
+        1611: true
+        1612: true
+        1613: true
+        1614: true
+        1615: true
+        1616: true
+        1617: true
+        1618: true
+        1619: true
+        162: true
+        1620: true
+        1621: true
+        1622: true
+        1623: true
+        1624: true
+        1625: true
+        1626: true
+        1627: true
+        1628: true
+        1629: true
+        163: true
+        1630: true
+        1631: true
+        1632: true
+        1633: true
+        1634: true
+        1635: true
+        1636: true
+        1637: true
+        1638: true
+        1639: true
+        164: true
+        1640: true
+        1641: true
+        1642: true
+        1643: true
+        1644: true
+        1645: true
+        1646: true
+        1647: true
+        1648: true
+        1649: true
+        165: true
+        1650: true
+        1651: true
+        1652: true
+        1653: true
+        1654: true
+        1655: true
+        1656: true
+        1657: true
+        1658: true
+        1659: true
+        166: true
+        1660: true
+        1661: true
+        1662: true
+        1663: true
+        1664: true
+        1665: true
+        1666: true
+        1667: true
+        1668: true
+        1669: true
+        167: true
+        1670: true
+        1671: true
+        1672: true
+        1673: true
+        1674: true
+        1675: true
+        1676: true
+        1677: true
+        1678: true
+        1679: true
+        168: true
+        1680: true
+        1681: true
+        1682: true
+        1683: true
+        1684: true
+        1685: true
+        1686: true
+        1687: true
+        1688: true
+        1689: true
+        169: true
+        1690: true
+        1691: true
+        1692: true
+        1693: true
+        1694: true
+        1695: true
+        1696: true
+        1697: true
+        1698: true
+        1699: true
+        17: true
+        170: true
+        1700: true
+        1701: true
+        1702: true
+        1703: true
+        1704: true
+        1705: true
+        1706: true
+        1707: true
+        1708: true
+        1709: true
+        171: true
+        1710: true
+        1711: true
+        1712: true
+        1713: true
+        1714: true
+        1715: true
+        1716: true
+        1717: true
+        1718: true
+        1719: true
+        172: true
+        1720: true
+        1721: true
+        1722: true
+        1723: true
+        1724: true
+        1725: true
+        1726: true
+        1727: true
+        1728: true
+        1729: true
+        173: true
+        1730: true
+        1731: true
+        1732: true
+        1733: true
+        1734: true
+        1735: true
+        1736: true
+        1737: true
+        1738: true
+        1739: true
+        174: true
+        1740: true
+        1741: true
+        1742: true
+        1743: true
+        1744: true
+        1745: true
+        1746: true
+        1747: true
+        1748: true
+        1749: true
+        175: true
+        1750: true
+        1751: true
+        1752: true
+        1753: true
+        1754: true
+        1755: true
+        1756: true
+        1757: true
+        1758: true
+        1759: true
+        176: true
+        1760: true
+        1761: true
+        1762: true
+        1763: true
+        1764: true
+        1765: true
+        1766: true
+        1767: true
+        1768: true
+        1769: true
+        177: true
+        1770: true
+        1771: true
+        1772: true
+        1773: true
+        1774: true
+        1775: true
+        1776: true
+        1777: true
+        1778: true
+        1779: true
+        178: true
+        1780: true
+        1781: true
+        1782: true
+        1783: true
+        1784: true
+        1785: true
+        1786: true
+        1787: true
+        1788: true
+        1789: true
+        179: true
+        1790: true
+        1791: true
+        1792: true
+        1793: true
+        1794: true
+        1795: true
+        1796: true
+        1797: true
+        1798: true
+        1799: true
+        18: true
+        180: true
+        1800: true
+        1801: true
+        1802: true
+        1803: true
+        1804: true
+        1805: true
+        1806: true
+        1807: true
+        1808: true
+        1809: true
+        181: true
+        1810: true
+        1811: true
+        1812: true
+        1813: true
+        1814: true
+        1815: true
+        1816: true
+        1817: true
+        1818: true
+        1819: true
+        182: true
+        1820: true
+        1821: true
+        1822: true
+        1823: true
+        1824: true
+        1825: true
+        1826: true
+        1827: true
+        1828: true
+        1829: true
+        183: true
+        1830: true
+        1831: true
+        1832: true
+        1833: true
+        1834: true
+        1835: true
+        1836: true
+        1837: true
+        1838: true
+        1839: true
+        184: true
+        1840: true
+        1841: true
+        1842: true
+        1843: true
+        1844: true
+        1845: true
+        1846: true
+        1847: true
+        1848: true
+        1849: true
+        185: true
+        1850: true
+        1851: true
+        1852: true
+        1853: true
+        1854: true
+        1855: true
+        1856: true
+        1857: true
+        1858: true
+        1859: true
+        186: true
+        1860: true
+        1861: true
+        1862: true
+        1863: true
+        1864: true
+        1865: true
+        1866: true
+        1867: true
+        1868: true
+        1869: true
+        187: true
+        1870: true
+        1871: true
+        1872: true
+        1873: true
+        1874: true
+        1875: true
+        1876: true
+        1877: true
+        1878: true
+        1879: true
+        188: true
+        1880: true
+        1881: true
+        1882: true
+        1883: true
+        1884: true
+        1885: true
+        1886: true
+        1887: true
+        1888: true
+        1889: true
+        189: true
+        1890: true
+        1891: true
+        1892: true
+        1893: true
+        1894: true
+        1895: true
+        1896: true
+        1897: true
+        1898: true
+        1899: true
+        19: true
+        190: true
+        1900: true
+        1901: true
+        1902: true
+        1903: true
+        1904: true
+        1905: true
+        1906: true
+        1907: true
+        1908: true
+        1909: true
+        191: true
+        1910: true
+        1911: true
+        1912: true
+        1913: true
+        1914: true
+        1915: true
+        1916: true
+        1917: true
+        1918: true
+        1919: true
+        192: true
+        1920: true
+        1921: true
+        1922: true
+        1923: true
+        1924: true
+        1925: true
+        1926: true
+        1927: true
+        1928: true
+        1929: true
+        193: true
+        1930: true
+        1931: true
+        1932: true
+        1933: true
+        1934: true
+        1935: true
+        1936: true
+        1937: true
+        1938: true
+        1939: true
+        194: true
+        1940: true
+        1941: true
+        1942: true
+        1943: true
+        1944: true
+        1945: true
+        1946: true
+        1947: true
+        1948: true
+        1949: true
+        195: true
+        1950: true
+        1951: true
+        1952: true
+        1953: true
+        1954: true
+        1955: true
+        1956: true
+        1957: true
+        1958: true
+        1959: true
+        196: true
+        1960: true
+        1961: true
+        1962: true
+        1963: true
+        1964: true
+        1965: true
+        1966: true
+        1967: true
+        1968: true
+        1969: true
+        197: true
+        1970: true
+        1971: true
+        1972: true
+        1973: true
+        1974: true
+        1975: true
+        1976: true
+        1977: true
+        1978: true
+        1979: true
+        198: true
+        1980: true
+        1981: true
+        1982: true
+        1983: true
+        1984: true
+        1985: true
+        1986: true
+        1987: true
+        1988: true
+        1989: true
+        199: true
+        1990: true
+        1991: true
+        1992: true
+        1993: true
+        1994: true
+        1995: true
+        1996: true
+        1997: true
+        1998: true
+        1999: true
+        2: true
+        20: true
+        200: true
+        2000: true
+        2001: true
+        2002: true
+        2003: true
+        2004: true
+        2005: true
+        2006: true
+        2007: true
+        2008: true
+        2009: true
+        201: true
+        2010: true
+        2011: true
+        2012: true
+        2013: true
+        2014: true
+        2015: true
+        2016: true
+        2017: true
+        2018: true
+        2019: true
+        202: true
+        2020: true
+        2021: true
+        2022: true
+        2023: true
+        2024: true
+        2025: true
+        2026: true
+        2027: true
+        2028: true
+        2029: true
+        203: true
+        2030: true
+        2031: true
+        2032: true
+        2033: true
+        2034: true
+        2035: true
+        2036: true
+        2037: true
+        2038: true
+        2039: true
+        204: true
+        2040: true
+        2041: true
+        2042: true
+        2043: true
+        2044: true
+        2045: true
+        2046: true
+        2047: true
+        2048: true
+        2049: true
+        205: true
+        2050: true
+        2051: true
+        2052: true
+        2053: true
+        2054: true
+        2055: true
+        2056: true
+        2057: true
+        2058: true
+        2059: true
+        206: true
+        2060: true
+        2061: true
+        2062: true
+        2063: true
+        2064: true
+        2065: true
+        2066: true
+        2067: true
+        2068: true
+        2069: true
+        207: true
+        2070: true
+        2071: true
+        2072: true
+        2073: true
+        2074: true
+        2075: true
+        2076: true
+        2077: true
+        2078: true
+        2079: true
+        208: true
+        2080: true
+        2081: true
+        2082: true
+        2083: true
+        2084: true
+        2085: true
+        2086: true
+        2087: true
+        2088: true
+        2089: true
+        209: true
+        2090: true
+        2091: true
+        2092: true
+        2093: true
+        2094: true
+        2095: true
+        2096: true
+        2097: true
+        2098: true
+        2099: true
+        21: true
+        210: true
+        2100: true
+        2101: true
+        2102: true
+        2103: true
+        2104: true
+        2105: true
+        2106: true
+        2107: true
+        2108: true
+        2109: true
+        211: true
+        2110: true
+        2111: true
+        2112: true
+        2113: true
+        2114: true
+        2115: true
+        2116: true
+        2117: true
+        2118: true
+        2119: true
+        212: true
+        2120: true
+        2121: true
+        2122: true
+        2123: true
+        2124: true
+        2125: true
+        2126: true
+        2127: true
+        2128: true
+        2129: true
+        213: true
+        2130: true
+        2131: true
+        2132: true
+        2133: true
+        2134: true
+        2135: true
+        2136: true
+        2137: true
+        2138: true
+        2139: true
+        214: true
+        2140: true
+        2141: true
+        2142: true
+        2143: true
+        2144: true
+        2145: true
+        2146: true
+        2147: true
+        2148: true
+        2149: true
+        215: true
+        2150: true
+        2151: true
+        2152: true
+        2153: true
+        2154: true
+        2155: true
+        2156: true
+        2157: true
+        2158: true
+        2159: true
+        216: true
+        2160: true
+        2161: true
+        2162: true
+        2163: true
+        2164: true
+        2165: true
+        2166: true
+        2167: true
+        2168: true
+        2169: true
+        217: true
+        2170: true
+        2171: true
+        2172: true
+        2173: true
+        2174: true
+        2175: true
+        2176: true
+        2177: true
+        2178: true
+        2179: true
+        218: true
+        2180: true
+        2181: true
+        2182: true
+        2183: true
+        2184: true
+        2185: true
+        2186: true
+        2187: true
+        2188: true
+        2189: true
+        219: true
+        2190: true
+        2191: true
+        2192: true
+        2193: true
+        2194: true
+        2195: true
+        2196: true
+        2197: true
+        2198: true
+        2199: true
+        22: true
+        220: true
+        2200: true
+        2201: true
+        2202: true
+        2203: true
+        2204: true
+        2205: true
+        2206: true
+        2207: true
+        2208: true
+        2209: true
+        221: true
+        2210: true
+        2211: true
+        2212: true
+        2213: true
+        2214: true
+        2215: true
+        2216: true
+        2217: true
+        2218: true
+        2219: true
+        222: true
+        2220: true
+        2221: true
+        2222: true
+        2223: true
+        2224: true
+        2225: true
+        2226: true
+        2227: true
+        2228: true
+        2229: true
+        223: true
+        2230: true
+        2231: true
+        2232: true
+        2233: true
+        2234: true
+        2235: true
+        2236: true
+        2237: true
+        2238: true
+        2239: true
+        224: true
+        2240: true
+        2241: true
+        2242: true
+        2243: true
+        2244: true
+        2245: true
+        2246: true
+        2247: true
+        2248: true
+        2249: true
+        225: true
+        2250: true
+        2251: true
+        2252: true
+        2253: true
+        2254: true
+        2255: true
+        2256: true
+        2257: true
+        2258: true
+        2259: true
+        226: true
+        2260: true
+        2261: true
+        2262: true
+        2263: true
+        2264: true
+        2265: true
+        2266: true
+        2267: true
+        2268: true
+        2269: true
+        227: true
+        2270: true
+        2271: true
+        2272: true
+        2273: true
+        2274: true
+        2275: true
+        2276: true
+        2277: true
+        2278: true
+        2279: true
+        228: true
+        2280: true
+        2281: true
+        2282: true
+        2283: true
+        2284: true
+        2285: true
+        2286: true
+        2287: true
+        2288: true
+        2289: true
+        229: true
+        2290: true
+        2291: true
+        2292: true
+        2293: true
+        2294: true
+        2295: true
+        2296: true
+        2297: true
+        2298: true
+        2299: true
+        23: true
+        230: true
+        2300: true
+        2301: true
+        2302: true
+        2303: true
+        2304: true
+        2305: true
+        2306: true
+        2307: true
+        2308: true
+        2309: true
+        231: true
+        2310: true
+        2311: true
+        2312: true
+        2313: true
+        2314: true
+        2315: true
+        2316: true
+        2317: true
+        2318: true
+        2319: true
+        232: true
+        2320: true
+        2321: true
+        2322: true
+        2323: true
+        2324: true
+        2325: true
+        2326: true
+        2327: true
+        2328: true
+        2329: true
+        233: true
+        2330: true
+        2331: true
+        2332: true
+        2333: true
+        2334: true
+        2335: true
+        2336: true
+        2337: true
+        2338: true
+        2339: true
+        234: true
+        2340: true
+        2341: true
+        2342: true
+        2343: true
+        2344: true
+        2345: true
+        2346: true
+        2347: true
+        2348: true
+        2349: true
+        235: true
+        2350: true
+        2351: true
+        2352: true
+        2353: true
+        2354: true
+        2355: true
+        2356: true
+        2357: true
+        2358: true
+        2359: true
+        236: true
+        2360: true
+        2361: true
+        2362: true
+        2363: true
+        2364: true
+        2365: true
+        2366: true
+        2367: true
+        2368: true
+        2369: true
+        237: true
+        2370: true
+        2371: true
+        2372: true
+        2373: true
+        2374: true
+        2375: true
+        2376: true
+        2377: true
+        2378: true
+        2379: true
+        238: true
+        2380: true
+        2381: true
+        2382: true
+        2383: true
+        2384: true
+        2385: true
+        2386: true
+        2387: true
+        2388: true
+        2389: true
+        239: true
+        2390: true
+        2391: true
+        2392: true
+        2393: true
+        2394: true
+        2395: true
+        2396: true
+        2397: true
+        2398: true
+        2399: true
+        24: true
+        240: true
+        2400: true
+        2401: true
+        2402: true
+        2403: true
+        2404: true
+        2405: true
+        2406: true
+        2407: true
+        2408: true
+        2409: true
+        241: true
+        2410: true
+        2411: true
+        2412: true
+        2413: true
+        2414: true
+        2415: true
+        2416: true
+        2417: true
+        2418: true
+        2419: true
+        242: true
+        2420: true
+        2421: true
+        2422: true
+        2423: true
+        2424: true
+        2425: true
+        2426: true
+        2427: true
+        2428: true
+        2429: true
+        243: true
+        2430: true
+        2431: true
+        2432: true
+        2433: true
+        2434: true
+        2435: true
+        2436: true
+        2437: true
+        2438: true
+        2439: true
+        244: true
+        2440: true
+        2441: true
+        2442: true
+        2443: true
+        2444: true
+        2445: true
+        2446: true
+        2447: true
+        2448: true
+        2449: true
+        245: true
+        2450: true
+        2451: true
+        2452: true
+        2453: true
+        2454: true
+        2455: true
+        2456: true
+        2457: true
+        2458: true
+        2459: true
+        246: true
+        2460: true
+        2461: true
+        2462: true
+        2463: true
+        2464: true
+        2465: true
+        2466: true
+        2467: true
+        2468: true
+        2469: true
+        247: true
+        2470: true
+        2471: true
+        2472: true
+        2473: true
+        2474: true
+        2475: true
+        2476: true
+        2477: true
+        2478: true
+        2479: true
+        248: true
+        2480: true
+        2481: true
+        2482: true
+        2483: true
+        2484: true
+        2485: true
+        2486: true
+        2487: true
+        2488: true
+        2489: true
+        249: true
+        2490: true
+        2491: true
+        2492: true
+        2493: true
+        2494: true
+        2495: true
+        2496: true
+        2497: true
+        2498: true
+        2499: true
+        25: true
+        250: true
+        2500: true
+        2501: true
+        2502: true
+        2503: true
+        2504: true
+        2505: true
+        2506: true
+        2507: true
+        2508: true
+        2509: true
+        251: true
+        2510: true
+        2511: true
+        2512: true
+        2513: true
+        2514: true
+        2515: true
+        2516: true
+        2517: true
+        2518: true
+        2519: true
+        252: true
+        2520: true
+        2521: true
+        2522: true
+        2523: true
+        2524: true
+        2525: true
+        2526: true
+        2527: true
+        2528: true
+        2529: true
+        253: true
+        2530: true
+        2531: true
+        2532: true
+        2533: true
+        2534: true
+        254: true
+        2548: true
+        2549: true
+        255: true
+        2550: true
+        2551: true
+        2552: true
+        2553: true
+        2554: true
+        2555: true
+        2556: true
+        2557: true
+        2558: true
+        2559: true
+        256: true
+        2560: true
+        2561: true
+        2562: true
+        2563: true
+        2564: true
+        2565: true
+        2566: true
+        2567: true
+        2568: true
+        2569: true
+        257: true
+        2570: true
+        2571: true
+        2572: true
+        2573: true
+        2574: true
+        2575: true
+        2576: true
+        2577: true
+        2578: true
+        2579: true
+        258: true
+        2580: true
+        2581: true
+        2582: true
+        2583: true
+        2584: true
+        2585: true
+        2586: true
+        2587: true
+        2588: true
+        2589: true
+        259: true
+        2590: true
+        2591: true
+        2592: true
+        2593: true
+        2594: true
+        2595: true
+        2596: true
+        2597: true
+        2598: true
+        2599: true
+        26: true
+        260: true
+        2600: true
+        2601: true
+        2602: true
+        2603: true
+        2604: true
+        2605: true
+        2606: true
+        2607: true
+        2608: true
+        2609: true
+        261: true
+        2610: true
+        2611: true
+        2612: true
+        2613: true
+        2614: true
+        2615: true
+        2616: true
+        2617: true
+        2618: true
+        2619: true
+        262: true
+        2620: true
+        2621: true
+        2622: true
+        2623: true
+        2624: true
+        2625: true
+        2626: true
+        2627: true
+        2628: true
+        2629: true
+        263: true
+        2630: true
+        2631: true
+        2632: true
+        2633: true
+        2634: true
+        2635: true
+        2636: true
+        2637: true
+        2638: true
+        2639: true
+        264: true
+        2640: true
+        2641: true
+        2642: true
+        2643: true
+        2644: true
+        2645: true
+        2646: true
+        2647: true
+        2648: true
+        2649: true
+        265: true
+        2650: true
+        2651: true
+        2652: true
+        2653: true
+        2654: true
+        2655: true
+        2656: true
+        2657: true
+        2658: true
+        2659: true
+        266: true
+        2660: true
+        2661: true
+        2662: true
+        2663: true
+        2664: true
+        2665: true
+        2666: true
+        2667: true
+        2668: true
+        2669: true
+        267: true
+        2670: true
+        2671: true
+        2672: true
+        2673: true
+        2674: true
+        2675: true
+        2676: true
+        2677: true
+        2678: true
+        2679: true
+        268: true
+        2680: true
+        2681: true
+        2682: true
+        2683: true
+        2684: true
+        2685: true
+        2686: true
+        2687: true
+        2688: true
+        2689: true
+        269: true
+        2690: true
+        2691: true
+        2692: true
+        2693: true
+        2694: true
+        2695: true
+        2696: true
+        2697: true
+        2698: true
+        2699: true
+        27: true
+        270: true
+        2700: true
+        2701: true
+        2702: true
+        2703: true
+        2704: true
+        2705: true
+        2706: true
+        2707: true
+        2708: true
+        2709: true
+        271: true
+        2710: true
+        2711: true
+        2712: true
+        2713: true
+        2714: true
+        2715: true
+        2716: true
+        2717: true
+        2718: true
+        2719: true
+        272: true
+        2720: true
+        2721: true
+        2722: true
+        2723: true
+        2724: true
+        2725: true
+        2726: true
+        2727: true
+        2728: true
+        2729: true
+        273: true
+        2730: true
+        2731: true
+        2732: true
+        2733: true
+        2734: true
+        2735: true
+        2736: true
+        2737: true
+        2738: true
+        2739: true
+        274: true
+        2740: true
+        2741: true
+        2742: true
+        2743: true
+        2744: true
+        2745: true
+        2746: true
+        2747: true
+        2748: true
+        2749: true
+        275: true
+        2750: true
+        2751: true
+        2752: true
+        2753: true
+        2754: true
+        2755: true
+        2756: true
+        2757: true
+        2758: true
+        2759: true
+        276: true
+        2760: true
+        2761: true
+        2762: true
+        2763: true
+        2764: true
+        2765: true
+        2766: true
+        2767: true
+        2768: true
+        2769: true
+        277: true
+        2770: true
+        2771: true
+        2772: true
+        2773: true
+        2774: true
+        2775: true
+        2776: true
+        2777: true
+        2778: true
+        2779: true
+        278: true
+        2780: true
+        2781: true
+        2782: true
+        2783: true
+        2784: true
+        2785: true
+        2786: true
+        2787: true
+        2788: true
+        2789: true
+        279: true
+        2790: true
+        2791: true
+        2792: true
+        2793: true
+        2794: true
+        2795: true
+        2796: true
+        2797: true
+        2798: true
+        2799: true
+        28: true
+        280: true
+        2800: true
+        2801: true
+        2802: true
+        2803: true
+        2804: true
+        2805: true
+        2806: true
+        2807: true
+        2808: true
+        2809: true
+        281: true
+        2810: true
+        2811: true
+        2812: true
+        2813: true
+        2814: true
+        2815: true
+        2816: true
+        2817: true
+        2818: true
+        2819: true
+        282: true
+        2820: true
+        2821: true
+        2822: true
+        2823: true
+        2824: true
+        2825: true
+        2826: true
+        2827: true
+        2828: true
+        2829: true
+        283: true
+        2830: true
+        2831: true
+        2832: true
+        2833: true
+        2834: true
+        2835: true
+        2836: true
+        2837: true
+        2838: true
+        2839: true
+        284: true
+        2840: true
+        2841: true
+        2842: true
+        2843: true
+        2844: true
+        2845: true
+        2846: true
+        2847: true
+        2848: true
+        2849: true
+        285: true
+        2850: true
+        2851: true
+        2852: true
+        2853: true
+        2854: true
+        2855: true
+        2856: true
+        2857: true
+        2858: true
+        2859: true
+        286: true
+        2860: true
+        2861: true
+        2862: true
+        2863: true
+        2864: true
+        2865: true
+        2866: true
+        2867: true
+        2868: true
+        2869: true
+        287: true
+        2870: true
+        2871: true
+        2872: true
+        2873: true
+        2874: true
+        2875: true
+        2876: true
+        2877: true
+        2878: true
+        2879: true
+        288: true
+        2880: true
+        2881: true
+        2882: true
+        2883: true
+        2884: true
+        2885: true
+        2886: true
+        2887: true
+        2888: true
+        2889: true
+        289: true
+        2890: true
+        2891: true
+        2892: true
+        2893: true
+        2894: true
+        2895: true
+        2896: true
+        2897: true
+        2898: true
+        2899: true
+        29: true
+        290: true
+        2900: true
+        2901: true
+        2902: true
+        2903: true
+        2904: true
+        2905: true
+        2906: true
+        2907: true
+        2908: true
+        2909: true
+        291: true
+        2910: true
+        2911: true
+        2912: true
+        2913: true
+        2914: true
+        2915: true
+        2916: true
+        2917: true
+        2918: true
+        2919: true
+        292: true
+        2920: true
+        2921: true
+        2922: true
+        2923: true
+        2924: true
+        293: true
+        294: true
+        295: true
+        296: true
+        297: true
+        298: true
+        299: true
+        3: true
+        30: true
+        300: true
+        301: true
+        302: true
+        303: true
+        304: true
+        305: true
+        306: true
+        307: true
+        308: true
+        309: true
+        31: true
+        310: true
+        311: true
+        312: true
+        313: true
+        314: true
+        315: true
+        316: true
+        317: true
+        318: true
+        319: true
+        32: true
+        320: true
+        321: true
+        322: true
+        323: true
+        324: true
+        325: true
+        326: true
+        327: true
+        328: true
+        329: true
+        33: true
+        330: true
+        331: true
+        332: true
+        333: true
+        334: true
+        335: true
+        336: true
+        337: true
+        338: true
+        339: true
+        34: true
+        340: true
+        341: true
+        342: true
+        343: true
+        344: true
+        345: true
+        346: true
+        347: true
+        348: true
+        349: true
+        35: true
+        350: true
+        351: true
+        352: true
+        353: true
+        354: true
+        355: true
+        356: true
+        357: true
+        358: true
+        359: true
+        36: true
+        360: true
+        361: true
+        362: true
+        363: true
+        364: true
+        365: true
+        366: true
+        367: true
+        368: true
+        369: true
+        37: true
+        370: true
+        371: true
+        372: true
+        373: true
+        374: true
+        375: true
+        376: true
+        377: true
+        378: true
+        379: true
+        38: true
+        380: true
+        381: true
+        382: true
+        383: true
+        384: true
+        385: true
+        386: true
+        387: true
+        388: true
+        389: true
+        39: true
+        390: true
+        391: true
+        392: true
+        393: true
+        394: true
+        395: true
+        396: true
+        397: true
+        398: true
+        399: true
+        4: true
+        40: true
+        400: true
+        401: true
+        402: true
+        403: true
+        404: true
+        405: true
+        406: true
+        407: true
+        408: true
+        409: true
+        41: true
+        410: true
+        411: true
+        412: true
+        413: true
+        414: true
+        415: true
+        416: true
+        417: true
+        418: true
+        419: true
+        42: true
+        420: true
+        421: true
+        422: true
+        423: true
+        424: true
+        425: true
+        426: true
+        427: true
+        428: true
+        429: true
+        43: true
+        430: true
+        431: true
+        432: true
+        433: true
+        434: true
+        435: true
+        436: true
+        437: true
+        438: true
+        439: true
+        44: true
+        440: true
+        441: true
+        442: true
+        443: true
+        444: true
+        445: true
+        446: true
+        447: true
+        448: true
+        449: true
+        45: true
+        450: true
+        451: true
+        452: true
+        453: true
+        454: true
+        455: true
+        456: true
+        457: true
+        458: true
+        459: true
+        46: true
+        460: true
+        461: true
+        462: true
+        463: true
+        464: true
+        465: true
+        466: true
+        467: true
+        468: true
+        469: true
+        47: true
+        470: true
+        471: true
+        472: true
+        473: true
+        474: true
+        475: true
+        476: true
+        477: true
+        478: true
+        479: true
+        48: true
+        480: true
+        481: true
+        482: true
+        483: true
+        484: true
+        485: true
+        486: true
+        487: true
+        488: true
+        489: true
+        49: true
+        490: true
+        491: true
+        492: true
+        493: true
+        494: true
+        495: true
+        496: true
+        497: true
+        498: true
+        499: true
+        5: true
+        50: true
+        500: true
+        501: true
+        502: true
+        503: true
+        504: true
+        505: true
+        506: true
+        507: true
+        508: true
+        509: true
+        51: true
+        510: true
+        511: true
+        512: true
+        513: true
+        514: true
+        515: true
+        516: true
+        517: true
+        518: true
+        519: true
+        52: true
+        520: true
+        521: true
+        522: true
+        523: true
+        524: true
+        525: true
+        526: true
+        527: true
+        528: true
+        529: true
+        53: true
+        530: true
+        531: true
+        532: true
+        533: true
+        534: true
+        535: true
+        536: true
+        537: true
+        538: true
+        539: true
+        54: true
+        540: true
+        541: true
+        542: true
+        543: true
+        544: true
+        545: true
+        546: true
+        547: true
+        548: true
+        549: true
+        55: true
+        550: true
+        551: true
+        552: true
+        553: true
+        554: true
+        555: true
+        556: true
+        557: true
+        558: true
+        559: true
+        56: true
+        560: true
+        561: true
+        562: true
+        563: true
+        564: true
+        565: true
+        566: true
+        567: true
+        568: true
+        569: true
+        57: true
+        570: true
+        571: true
+        572: true
+        573: true
+        574: true
+        575: true
+        576: true
+        577: true
+        578: true
+        579: true
+        58: true
+        580: true
+        581: true
+        582: true
+        583: true
+        584: true
+        585: true
+        586: true
+        587: true
+        588: true
+        589: true
+        59: true
+        590: true
+        591: true
+        592: true
+        593: true
+        594: true
+        595: true
+        596: true
+        597: true
+        598: true
+        599: true
+        6: true
+        60: true
+        600: true
+        601: true
+        602: true
+        603: true
+        604: true
+        605: true
+        606: true
+        607: true
+        608: true
+        609: true
+        61: true
+        610: true
+        611: true
+        612: true
+        613: true
+        614: true
+        615: true
+        616: true
+        617: true
+        618: true
+        619: true
+        62: true
+        620: true
+        621: true
+        622: true
+        623: true
+        624: true
+        625: true
+        626: true
+        627: true
+        628: true
+        629: true
+        63: true
+        630: true
+        631: true
+        632: true
+        633: true
+        634: true
+        635: true
+        636: true
+        637: true
+        638: true
+        639: true
+        64: true
+        640: true
+        641: true
+        642: true
+        643: true
+        644: true
+        645: true
+        646: true
+        647: true
+        648: true
+        649: true
+        65: true
+        650: true
+        651: true
+        652: true
+        653: true
+        654: true
+        655: true
+        656: true
+        657: true
+        658: true
+        659: true
+        66: true
+        660: true
+        661: true
+        662: true
+        663: true
+        664: true
+        665: true
+        666: true
+        667: true
+        668: true
+        669: true
+        67: true
+        670: true
+        671: true
+        672: true
+        673: true
+        674: true
+        675: true
+        676: true
+        677: true
+        678: true
+        679: true
+        68: true
+        680: true
+        681: true
+        682: true
+        683: true
+        684: true
+        685: true
+        686: true
+        687: true
+        688: true
+        689: true
+        69: true
+        690: true
+        691: true
+        692: true
+        693: true
+        694: true
+        695: true
+        696: true
+        697: true
+        698: true
+        699: true
+        7: true
+        70: true
+        700: true
+        701: true
+        702: true
+        703: true
+        704: true
+        705: true
+        706: true
+        707: true
+        708: true
+        709: true
+        71: true
+        710: true
+        711: true
+        712: true
+        713: true
+        714: true
+        715: true
+        716: true
+        717: true
+        718: true
+        719: true
+        72: true
+        720: true
+        721: true
+        722: true
+        723: true
+        724: true
+        725: true
+        726: true
+        727: true
+        728: true
+        729: true
+        73: true
+        730: true
+        731: true
+        732: true
+        733: true
+        734: true
+        735: true
+        736: true
+        737: true
+        738: true
+        739: true
+        74: true
+        740: true
+        741: true
+        742: true
+        743: true
+        744: true
+        745: true
+        746: true
+        747: true
+        748: true
+        749: true
+        75: true
+        750: true
+        751: true
+        752: true
+        753: true
+        754: true
+        755: true
+        756: true
+        757: true
+        758: true
+        759: true
+        76: true
+        760: true
+        761: true
+        762: true
+        763: true
+        764: true
+        765: true
+        766: true
+        767: true
+        768: true
+        769: true
+        77: true
+        770: true
+        771: true
+        772: true
+        773: true
+        774: true
+        775: true
+        776: true
+        777: true
+        778: true
+        779: true
+        78: true
+        780: true
+        781: true
+        782: true
+        783: true
+        784: true
+        785: true
+        786: true
+        787: true
+        788: true
+        789: true
+        79: true
+        790: true
+        791: true
+        792: true
+        793: true
+        794: true
+        795: true
+        796: true
+        797: true
+        798: true
+        799: true
+        8: true
+        80: true
+        800: true
+        801: true
+        802: true
+        803: true
+        804: true
+        805: true
+        806: true
+        807: true
+        808: true
+        809: true
+        81: true
+        810: true
+        811: true
+        812: true
+        813: true
+        814: true
+        815: true
+        816: true
+        817: true
+        818: true
+        819: true
+        82: true
+        820: true
+        821: true
+        822: true
+        823: true
+        824: true
+        825: true
+        826: true
+        827: true
+        828: true
+        829: true
+        83: true
+        830: true
+        831: true
+        832: true
+        833: true
+        834: true
+        835: true
+        836: true
+        837: true
+        838: true
+        839: true
+        84: true
+        840: true
+        841: true
+        842: true
+        843: true
+        844: true
+        845: true
+        846: true
+        847: true
+        848: true
+        849: true
+        85: true
+        850: true
+        851: true
+        852: true
+        853: true
+        854: true
+        855: true
+        856: true
+        857: true
+        858: true
+        859: true
+        86: true
+        860: true
+        861: true
+        862: true
+        863: true
+        864: true
+        865: true
+        866: true
+        867: true
+        868: true
+        869: true
+        87: true
+        870: true
+        871: true
+        872: true
+        873: true
+        874: true
+        875: true
+        876: true
+        877: true
+        878: true
+        879: true
+        88: true
+        880: true
+        881: true
+        882: true
+        883: true
+        884: true
+        885: true
+        886: true
+        887: true
+        888: true
+        889: true
+        89: true
+        890: true
+        891: true
+        892: true
+        893: true
+        894: true
+        895: true
+        896: true
+        897: true
+        898: true
+        899: true
+        9: true
+        90: true
+        900: true
+        901: true
+        902: true
+        903: true
+        904: true
+        905: true
+        906: true
+        907: true
+        908: true
+        909: true
+        91: true
+        910: true
+        911: true
+        912: true
+        913: true
+        914: true
+        915: true
+        916: true
+        917: true
+        918: true
+        919: true
+        92: true
+        920: true
+        921: true
+        922: true
+        923: true
+        924: true
+        925: true
+        926: true
+        927: true
+        928: true
+        929: true
+        93: true
+        930: true
+        931: true
+        932: true
+        933: true
+        934: true
+        935: true
+        936: true
+        937: true
+        938: true
+        939: true
+        94: true
+        940: true
+        941: true
+        942: true
+        943: true
+        944: true
+        945: true
+        946: true
+        947: true
+        948: true
+        949: true
+        95: true
+        950: true
+        951: true
+        952: true
+        953: true
+        954: true
+        955: true
+        956: true
+        957: true
+        958: true
+        959: true
+        96: true
+        960: true
+        961: true
+        962: true
+        963: true
+        964: true
+        965: true
+        966: true
+        967: true
+        968: true
+        969: true
+        97: true
+        970: true
+        971: true
+        972: true
+        973: true
+        974: true
+        975: true
+        976: true
+        977: true
+        978: true
+        979: true
+        98: true
+        980: true
+        981: true
+        982: true
+        983: true
+        984: true
+        985: true
+        986: true
+        987: true
+        988: true
+        989: true
+        99: true
+        990: true
+        991: true
+        992: true
+        993: true
+        994: true
+        995: true
+        996: true
+        997: true
+        998: true
+        999: true
+      Queue Size: 100
+      Value: true
+    - Alpha: 1
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz/PointCloud2
+      Color: 255; 255; 255
+      Color Transformer: RGB8
+      Decay Time: 0
+      Enabled: true
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Max Intensity: 4096
+      Min Color: 0; 0; 0
+      Min Intensity: 0
+      Name: PointCloud2
+      Position Transformer: XYZ
+      Queue Size: 10
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.009999999776482582
+      Style: Flat Squares
+      Topic: /azure1/points2
+      Unreliable: false
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: true
+    - Class: rviz/MarkerArray
+      Enabled: true
+      Marker Topic: /occupied_cells_vis_array
+      Name: MarkerArray
+      Namespaces:
+        map: true
+      Queue Size: 100
+      Value: true
+    - Class: rviz/Image
+      Enabled: true
+      Image Topic: /azure1/rgb/image_raw
+      Max Value: 1
+      Median window: 5
+      Min Value: 0
+      Name: Image
+      Normalize Range: true
+      Queue Size: 2
+      Transport Hint: raw
+      Unreliable: false
+      Value: true
+    - Class: rviz/Image
+      Enabled: true
+      Image Topic: /azure1/depth_to_rgb/image_raw
+      Max Value: 1
+      Median window: 5
+      Min Value: 0
+      Name: Image
+      Normalize Range: true
+      Queue Size: 2
+      Transport Hint: raw
+      Unreliable: false
+      Value: true
+    - Class: octomap_rviz_plugin/OccupancyGrid
+      Enabled: true
+      Max. Height Display: 3.4028234663852886e+38
+      Max. Octree Depth: 16
+      Min. Height Display: -3.4028234663852886e+38
+      Name: OccupancyGrid
+      Octomap Topic: ""
+      Queue Size: 5
+      Value: true
+      Voxel Alpha: 1
+      Voxel Coloring: Z-Axis
+      Voxel Rendering: Occupied Voxels
+  Enabled: true
+  Global Options:
+    Background Color: 48; 48; 48
+    Default Light: true
+    Fixed Frame: world
+    Frame Rate: 30
+  Name: root
+  Tools:
+    - Class: rviz/Interact
+      Hide Inactive Objects: true
+    - Class: rviz/MoveCamera
+    - Class: rviz/Select
+    - Class: rviz/FocusCamera
+    - Class: rviz/Measure
+    - Class: rviz/SetInitialPose
+      Theta std deviation: 0.2617993950843811
+      Topic: /initialpose
+      X std deviation: 0.5
+      Y std deviation: 0.5
+    - Class: rviz/SetGoal
+      Topic: /move_base_simple/goal
+    - Class: rviz/PublishPoint
+      Single click: true
+      Topic: /clicked_point
+  Value: true
+  Views:
+    Current:
+      Class: rviz/Orbit
+      Distance: 0.7680066823959351
+      Enable Stereo Rendering:
+        Stereo Eye Separation: 0.05999999865889549
+        Stereo Focal Distance: 1
+        Swap Stereo Eyes: false
+        Value: false
+      Focal Point:
+        X: 0.3741230070590973
+        Y: -0.09905186295509338
+        Z: 0.11417256295681
+      Focal Shape Fixed Size: false
+      Focal Shape Size: 0.05000000074505806
+      Invert Z Axis: false
+      Name: Current View
+      Near Clip Distance: 0.009999999776482582
+      Pitch: 0.7797966599464417
+      Target Frame: <Fixed Frame>
+      Value: Orbit (rviz)
+      Yaw: 1.2435557842254639
+    Saved: ~
+Window Geometry:
+  Displays:
+    collapsed: true
+  Height: 1023
+  Hide Left Dock: true
+  Hide Right Dock: true
+  Image:
+    collapsed: false
+  MotionPlanning:
+    collapsed: true
+  MotionPlanning - Trajectory Slider:
+    collapsed: false
+  QMainWindow State: 000000ff00000000fd0000000400000000000001f300000257fc020000000bfb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb000000280020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000000000000000fb000000100044006900730070006c006100790073000000014c000000c9000000c900fffffffb0000001c004d006f00740069006f006e0050006c0061006e006e0069006e0067000000021b000001880000017d00fffffffb00000044004d006f00740069006f006e0050006c0061006e006e0069006e00670020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000004100ffffff000000010000017300000363fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073000000003d00000363000000a400fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b20000000000000000000000020000039f00000109fc0100000005fb0000000a0049006d0061006700650100000000000001330000005e00fffffffb0000000a0049006d00610067006501000001390000012a0000005e00fffffffb0000000a0049006d0061006700650100000269000001360000005e00fffffffb0000000a0049006d006100670065010000027f000001200000000000000000fb0000000a00560069006500770073030000004e00000080000002e100000197000000030000039f00000039fc0100000002fb0000000800540069006d006501000000000000039f000002eb00fffffffb0000000800540069006d006501000000000000045000000000000000000000039f0000025700000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  Selection:
+    collapsed: false
+  Time:
+    collapsed: false
+  Tool Properties:
+    collapsed: false
+  Views:
+    collapsed: true
+  Width: 927
+  X: 67
+  Y: 27

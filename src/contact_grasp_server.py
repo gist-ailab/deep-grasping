@@ -28,7 +28,7 @@ class ContactGraspNet():
         rospy.loginfo("Starting contact_graspnet node")
 
         # initialize dnn server 
-        self.grasp_sock, _ = su.initialize_server('localhost', 5555)
+        self.grasp_sock, _ = su.initialize_server('localhost', 3333)
         rospy.loginfo("Wating for camera info")
         self.camera_info = rospy.wait_for_message("/azure1/rgb/camera_info", CameraInfo)
         self.data = {}

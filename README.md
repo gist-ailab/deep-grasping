@@ -94,9 +94,18 @@ conda activate 6dofgraspnet \
 
 ### RUN
 
+Robot
+```
+cw && ./franka.sh master 
+ros27 && roslaunch franka_interface interface.launch load_gripper:=true load_demo_planning_scene:=false
+
+```
+
 Azure kinect node
 ```
 ROS_NAMESPACE=azure1 roslaunch azure_kinect_ros_driver driver.launch color_resolution:=720P depth_mode:=WFOV_UNBINNED fps:=5 tf_prefix:=azure1_
+
+rosrun tf static_transform_publisher 0.078997 0.001502 0.066975 0.697583 -0.005156 0.716441 -0.007980 /panda_hand /azure1_camera_base 100
 ```
 
 contact graspnet server
