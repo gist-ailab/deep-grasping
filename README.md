@@ -19,8 +19,10 @@ ROS_NAMESPACE=azure1 roslaunch azure_kinect_ros_driver driver.launch color_resol
 
 ## TODO
 
+- Cuurently, this repo may not work properly. I will modify it soon ...
 - python 2 --> python 3
 - remove TCP connections
+
 
 ## GQ-CNN
 
