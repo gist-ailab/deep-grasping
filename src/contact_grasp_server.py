@@ -6,6 +6,7 @@ import ros_numpy
 import cv2, cv_bridge
 import numpy as np
 import message_filters
+import pcl
 
 import tf2_ros
 from sensor_msgs.msg import Image, CameraInfo, PointCloud2
@@ -28,8 +29,12 @@ class ContactGraspNet():
         rospy.loginfo("Starting contact_graspnet node")
 
         # initialize dnn server 
-        self.grasp_sock, _ = su.initialize_server('localhost', 5555)
+        self.grasp_sock, _ = su.initialize_server('localhost', 7777)
+        self.segm_sock, _ = su.initialize_server('localhost', 6666)
         rospy.loginfo("Successfully got camera info")
+        self.camera_info = rospy.wait_for_message("/azure_kinect_12/rgb/camera_info", CameraInfo)
+        self.data = {}
+        self.data["intrinsics_matrix"] = np.array(self.camera_info.K).reshape(3, 3)
 
         self.bridge = cv_bridge.CvBridge()
         self.grasp_srv = rospy.Service('/get_target_grasp_pose', GetTargetContactGraspSegm, self.get_target_grasp_pose)
@@ -44,7 +49,7 @@ class ContactGraspNet():
         self.marker_pub = rospy.Publisher("target_grasp", MarkerArray, queue_size = 1)
         self.marker_id = 0
         self.cmap = plt.get_cmap("YlGn")
-        control_points = np.load("/home/demo/catkin_ws/src/deep_grasping_ros/src/contact_graspnet/gripper_control_points/panda.npy")[:, :3]
+        control_points = np.load("/home/ailab/catkin_ws/src/deep-grasping/src/contact_graspnet/gripper_control_points/panda.npy")[:, :3]
         control_points = [[0, 0, 0], control_points[0, :], control_points[1, :], control_points[-2, :], control_points[-1, :]]
         control_points = np.asarray(control_points, dtype=np.float32)
         control_points[1:3, 2] = 0.0584
@@ -56,45 +61,73 @@ class ContactGraspNet():
         self.uoais_vm_pub = rospy.Publisher("uoais/visible_mask", Image, queue_size=1)
         self.uoais_am_pub = rospy.Publisher("uoais/amodal_mask", Image, queue_size=1)
 
+        self.img_size = (1280, 720)
+
 
     def get_target_grasp_pose(self, msg):
         
-        while True:
-            try:
-                H_base_to_cam = self.tf_buffer.lookup_transform("panda_link0", "azure1_rgb_camera_link", rospy.Time(), rospy.Duration(5.0))
-                H_base_to_hand = self.tf_buffer.lookup_transform("panda_link0", "panda_hand", rospy.Time(), rospy.Duration(5.0))
-                H_cam_to_hand = self.tf_buffer.lookup_transform("azure1_rgb_camera_link", "panda_hand", rospy.Time(), rospy.Duration(5.0))
-            except (tf2_ros.LookupException, tf2_ros.ConnectivityException, tf2_ros.ExtrapolationException) as e:
-                print(e)
-                rospy.sleep(0.5)
-            else:
-                H_base_to_cam = orh.msg_to_se3(H_base_to_cam)
-                H_base_to_hand = orh.msg_to_se3(H_base_to_hand)
-                H_cam_to_hand = orh.msg_to_se3(H_cam_to_hand)
-                break
+        # while True:
+        #     try:
+        #         # H_base_to_cam = self.tf_buffer.lookup_transform("panda_link0", "azure1_rgb_camera_link", rospy.Time(), rospy.Duration(5.0))
+        #         # H_base_to_hand = self.tf_buffer.lookup_transform("panda_link0", "panda_hand", rospy.Time(), rospy.Duration(5.0))
+        #         # H_cam_to_hand = self.tf_buffer.lookup_transform("azure1_rgb_camera_link", "panda_hand", rospy.Time(), rospy.Duration(5.0))
+        #         H_base_to_cam = self.tf_buffer.lookup_transform("panda_link0", "azure1_rgb_camera_link", rospy.Time(), rospy.Duration(5.0))
+        #         H_base_to_hand = self.tf_buffer.lookup_transform("panda_link0", "panda_hand", rospy.Time(), rospy.Duration(5.0))
+        #         H_cam_to_hand = self.tf_buffer.lookup_transform("azure1_rgb_camera_link", "panda_hand", rospy.Time(), rospy.Duration(5.0))
+        #     except (tf2_ros.LookupException, tf2_ros.ConnectivityException, tf2_ros.ExtrapolationException) as e:
+        #         print(e)
+        #         rospy.sleep(0.5)
+        #     else:
+        #         H_base_to_cam = orh.msg_to_se3(H_base_to_cam)
+        #         H_base_to_hand = orh.msg_to_se3(H_base_to_hand)
+        #         H_cam_to_hand = orh.msg_to_se3(H_cam_to_hand)
+        #         break
 
 
         self.initialize_marker()
         self.marker_id = 0
 
+        rgb = rospy.wait_for_message("/azure_kinect_12/rgb/image_raw", Image)
+        rgb = self.bridge.imgmsg_to_cv2(rgb, desired_encoding='bgr8')
+        print(rgb.shape)
+        # rgb = cv2.resize(rgb, self.img_size)
+        # rgb = rgb[240:480, 215:640, :]
+        rgb = cv2.resize(rgb, self.img_size)
+        self.data["rgb"] = rgb
+
+        depth = rospy.wait_for_message("/azure_kinect_12/depth_to_rgb/image_raw", Image)
+        depth = self.bridge.imgmsg_to_cv2(depth, desired_encoding='32FC1')
+        # depth = cv2.resize(depth, self.img_size)
+        # depth = depth[240:480, 215:640]
+        depth = cv2.resize(depth, self.img_size)
+        depth = np.float32(depth) / 1000
+        print(np.unique(depth))
+        self.data["depth"] = depth 
+
+        su.sendall_pickle(self.segm_sock, self.data)
+        segm = su.recvall_pickle(self.segm_sock)
+        self.data["segm"] = segm['segm']
 
         # send start signal to dnn client
-        su.sendall_pickle(self.grasp_sock, 1)
+        su.sendall_pickle(self.grasp_sock, self.data)
+
         pred_grasps_cam, scores, contact_pts, segm_result = su.recvall_pickle(self.grasp_sock)
         segmap, vis, occlusions = \
             self.bridge.cv2_to_imgmsg(segm_result["segm"]), segm_result["vis"], segm_result["occlusions"].tolist()
         self.uoais_am_pub.publish(self.bridge.cv2_to_imgmsg(vis))
 
+        rospy.loginfo("sdfsdfsdfsfsdfsdfsd")
 
         if pred_grasps_cam is None:
             rospy.logwarn_once("No grasps are detected")
             return None
+        rospy.loginfo("Grasp detected")
 
         all_pts = []
         grasps = []
         for k in pred_grasps_cam.keys():
             if len(scores[k]) == 0:
-                # rospy.logwarn_once("No grasps are detected")
+                rospy.logwarn_once("No grasps are detected")
                 continue
             for i, pred_grasp_cam in enumerate(pred_grasps_cam[k]):
                 H_cam_to_target = pred_grasp_cam
