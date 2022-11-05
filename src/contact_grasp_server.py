@@ -92,7 +92,7 @@ class ContactGraspNet():
         print(rgb.shape)
         # rgb = cv2.resize(rgb, self.img_size)
         # rgb = rgb[240:480, 215:640, :]
-        rgb = cv2.resize(rgb, self.img_size)
+        rgb = cv2.resize(rgb, self.img_size)[:,:,::-1]
         self.data["rgb"] = rgb
 
         depth = rospy.wait_for_message("/azure_kinect_12/depth_to_rgb/image_raw", Image)

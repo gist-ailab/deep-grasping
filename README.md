@@ -131,6 +131,28 @@ conda activate uoais \
 ```
 
 
+For Unstructured Contact-GraspNet
+'''
+un \
+    && roslaunch gail_camera_manager gail_camera_driver_un.launch 
+
+un \
+    && cd ~/catkin_ws/src/deep-grasping/src
+    && python contact_grasp_server.py
+
+uncg \
+    && cd /home/ailab/catkin_ws/src/deep-grasping/src/contact_graspnet/contact_graspnet
+    && python contact_grasp_client.py 
+
+un \
+    && cd ~/catkin_ws/src/deep-grasping/src/uoais
+    && python demo/uoais_client.py
+
+un \
+    && rosservice call /get_target_grasp_pose
+'''
+
+
 
 
 
